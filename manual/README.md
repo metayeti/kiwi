@@ -1,4 +1,4 @@
-# Iwik User Manual
+# kiwi User Manual
 
 ```
 💬 NOTE: This manual is a work in progress.
@@ -6,7 +6,7 @@
 
 - [Introduction]()
 
-   - [About Iwik]()
+   - [About kiwi]()
    - [Installation]()
 
 - [Workflow]()

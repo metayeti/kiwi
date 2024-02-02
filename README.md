@@ -4,6 +4,8 @@ Kit for Interactive World Integration | v0.0.1
 
 ## About
 
+---
+
 ( 🚧 -- UNDER CONSTRUCTION -- 🚧 )
 
 This project is a work in progress and is not currently in any type of functional or useful state. Please grab a time machine and check back in at a later time.

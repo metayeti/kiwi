@@ -2,8 +2,6 @@
 
 Kit for Interactive World Integration | v0.0.1
 
-## About
-
 ---
 
 ( 🚧 -- UNDER CONSTRUCTION -- 🚧 )
@@ -11,6 +9,8 @@ Kit for Interactive World Integration | v0.0.1
 This project is a work in progress and is not currently in any type of functional or useful state. Please grab a time machine and check back in at a later time.
 
 ---
+
+## About
 
 This is a free and open source, cross-platform, general-purpose 2D map editor intended for 2D game development. Its main features are:
 

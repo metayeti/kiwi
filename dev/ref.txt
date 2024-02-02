@@ -1,0 +1,11 @@
+== Online references, tutorials, help etc. ==
+
+> wxWidgets
+---
+https://brucey.net/programming/blitz/tutorials/prog/en/layoutmanagement.html
+https://neume.sourceforge.net/sizerdemo/
+
+> Icon guides
+---
+https://learn.microsoft.com/en-us/windows/win32/uxguide/vis-icons
+https://learn.microsoft.com/en-us/windows/apps/design/style/iconography/app-icon-construction

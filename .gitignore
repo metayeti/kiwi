@@ -1,0 +1,14 @@
+# vim temp files
+*~
+*.swp
+*.swo
+*.vim
+# visual studio ignored files and folders
+.vs
+/res/*.aps
+# vscode ignored folders
+.vscode
+# ignored folders
+.cache
+/build/
+/temp/

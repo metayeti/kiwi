@@ -1,0 +1,11 @@
+- 0.0.2 -
+[ ] Map, layer concepts
+[ ] New Map dialog
+
+- 0.0.1 -
+[x] Persistent window geometry
+[x] Version update util
+[x] Inject config util
+[x] svg2code util
+[x] About dialog
+[x] Program icon & logo

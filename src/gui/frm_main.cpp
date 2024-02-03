@@ -25,6 +25,7 @@
 #include "../application.h"
 #include "../util.h"
 #include "frm_main.h"
+#include "dlg_newmap.h"
 #include "dlg_about.h"
 #include "../res/svg_resources.h"
 #include "../res/xpm_resources.h"
@@ -71,6 +72,9 @@ kiwi::FrmMain::StatusBar::~StatusBar()
 
 void kiwi::FrmMain::OnMenuFileNew(wxCommandEvent& e)
 {
+	DlgNewMap* dlgNewMap = new DlgNewMap(this);
+	dlgNewMap->CenterOnParent();
+	dlgNewMap->ShowModal();
 }
 
 void kiwi::FrmMain::OnMenuFileQuit(wxCommandEvent& e)

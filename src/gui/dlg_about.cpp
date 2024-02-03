@@ -36,7 +36,7 @@ kiwi::DlgAbout::DlgAbout(wxWindow* parent)
 	auto sizRoot = new wxBoxSizer(wxVERTICAL); // this is the root sizer
 
 	// create a "dialog elements" sizer
-	auto sizDialogElements = new wxBoxSizer(wxHORIZONTAL); // use auto when creating elements
+	auto sizDialogElements = new wxBoxSizer(wxHORIZONTAL); // use auto when creating elements on the fly
 	sizRoot->Add( // always expand the arguments of Add() for visibility
 		sizDialogElements,
 		0,

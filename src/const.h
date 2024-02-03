@@ -2,7 +2,7 @@
 ///   __    __         __ 
 ///  |  | _|__|_  _  _|__|   Kit for Interactive World Integration
 ///  |  |/ /  \ \/ \/ /  |   A 2D game map editor
-///  |    <|  |\  _  /|  |   ( version 0.0.1 )
+///  |    <|  |\  _  /|  |   ( version 0.0.2 dev )
 ///  |__|_ \__| \/ \/ |__|   https://github.com/metayeti/kiwi
 ///       \/              
 ///
@@ -27,17 +27,17 @@
 namespace kiwi
 {
 	// current kiwi version
-	// == The following entry NEEDS to exist on line 31 so that "update_versions" utility can propery update it! ==
-	const char* const KIWI_VERSION = "0.0.1";
+	// == The following entry NEEDS to exist on line 31 so that "update_versions" utility can properly update it! ==
+	const char* const KIWI_VERSION = "0.0.2 dev";
 
 	// filenames
 	const char* const FILENAME_CONFIG_INI = "kiwi.ini";
 
-	// github URLs
+	// URLs
 	const char* const URL_GITHUB_MANUAL = "https://github.com/metayeti/kiwi/tree/main/manual/";
 	const char* const URL_GITHUB_RELEASES = "https://github.com/metayeti/kiwi/releases";
 
-	// main window
+	// main window constants
 	const char* const MAIN_WINDOW_TITLE = "kiwi";
 
 	// map constraints
@@ -55,6 +55,11 @@ namespace kiwi
 	const std::string KIWFILE_BINARY_END_POINT = "<wik";
 	const std::string MAPFILE_BINARY_BGN_POINT = "map>";
 	const std::string MAPFILE_BINARY_END_POINT = "<pam";
+	
+	// GUI constants
+	const int GUI_DEFAULT_BORDER_SIZE = 10;
+	const int GUI_DEFAULT_BUTTON_WIDTH = 110;
+	const int GUI_DEFAULT_BUTTON_HEIGHT = 30;
 	
 	// help strings
 	const char* const QUICKHELP_ACTION_FILE_NEW = "Create a new map";

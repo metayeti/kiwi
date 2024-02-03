@@ -16,7 +16,7 @@
 ///  dlg_about.cpp
 ///  ---
 ///  About dialog implementation. The commented remarks in this source file also
-///  serve as a basic reference the dialog code style used across the codebase.
+///  serve as a basic reference for dialog code style used across the codebase.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 

@@ -21,10 +21,10 @@
 
 #pragma once
 
-#ifndef MW_XPM_RESOURCES_H_
-#define MW_XPM_RESOURCES_H_
+#ifndef KIWI_XPM_RESOURCES_H_
+#define KIWI_XPM_RESOURCES_H_
 
 // -- XPM resources --
 #include "xpm/kiwi.xpm"
 
-#endif // MW_XPM_RESOURCES_H_
+#endif // KIWI_XPM_RESOURCES_H_

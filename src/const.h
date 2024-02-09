@@ -40,6 +40,11 @@ namespace kiwi
 	// main window constants
 	const char* const MAIN_WINDOW_TITLE = "kiwi";
 
+	// map type
+	const int MAP_TYPE_ORTHOGONAL = 0;
+	const int MAP_TYPE_ISOMETRIC = 1;
+	const int MAP_TYPE_HEXAGONAL = 2;
+
 	// map constraints
 	const size_t MAP_NAME_MAX_LENGTH = 100;
 	const size_t MAP_MIN_W = 1;

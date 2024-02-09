@@ -40,51 +40,75 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		borderSize
 	);
 	{
-		auto vSizer = new wxBoxSizer(wxVERTICAL);
-		panDialogElements->SetSizer(vSizer);
+		auto sizBox = new wxBoxSizer(wxVERTICAL);
+		panDialogElements->SetSizer(sizBox);
 
-		auto fgSizer = new wxFlexGridSizer(2, 2, FromDIP(10), FromDIP(25));
+		sizGrid = new wxFlexGridSizer(2, 2, FromDIP(10), FromDIP(25));
 
-		wxStaticText* lblMapName = new wxStaticText(panDialogElements, wxID_ANY, wxT("Map &name:"));
+		auto lblMapName = new wxStaticText(panDialogElements, wxID_ANY, "Map &name:");
 
-		wxStaticText* lblMapType = new wxStaticText(panDialogElements, wxID_ANY, wxT("Grid &type:"));
+		auto lblMapType = new wxStaticText(panDialogElements, wxID_ANY, "Grid &type:");
 
-		wxTextCtrl* txtMapName = new wxTextCtrl(panDialogElements, wxID_ANY, wxT("Unnamed"));
-		wxChoice* cmbMapType = new wxChoice(panDialogElements, wxID_ANY);
+		auto txtMapName = new wxTextCtrl(panDialogElements, wxID_ANY, "Untitled");
+
+		sizMapType = new wxBoxSizer(wxHORIZONTAL);
+
+		cmbMapType = new wxChoice(panDialogElements, wxID_ANY, wxDefaultPosition, wxDefaultSize);
 		cmbMapType->Append(std::vector<wxString>{
 			"Orthogonal",
-			"Isometric (Staggered)",
-			"Isometric (Diamond)",
-			"Hexagonal (Staggered)",
-			"Hexagonal (Diamond)"
+			"Isometric",
+			"Hexagonal"
 		});
 		cmbMapType->Select(0);
+		Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceMapType, this, cmbMapType->GetId());
 
-		fgSizer->Add(
+		cmbMapSubtype = new wxChoice(panDialogElements, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+		cmbMapSubtype->Append(std::vector<wxString>{
+			"Normal",
+			"Diamond"
+		});
+		cmbMapSubtype->Select(0);
+		cmbMapSubtype->Hide();
+		
+		sizMapType->Add(
+			cmbMapType,
+			2,
+			wxEXPAND,
+			halfBorderSize
+		);
+		sizMapType->Add(
+			cmbMapSubtype,
+			1,
+			wxLEFT,
+			borderSize
+		);
+
+		sizGrid->Add(
 			lblMapName,
 			0,
 			wxALIGN_CENTER_VERTICAL
 		);
-		fgSizer->Add(
+		sizGrid->Add(
 			txtMapName,
 			1,
 			wxEXPAND
 		);
-		fgSizer->Add(
+		sizGrid->Add(
 			lblMapType,
 			0,
 			wxALIGN_CENTER_VERTICAL
 		);
-		fgSizer->Add(
-			cmbMapType,
+		sizGrid->Add(
+			//cmbMapType,
+			sizMapType,
 			1,
 			wxEXPAND
 		);
 
-		fgSizer->AddGrowableCol(1, 1);
+		sizGrid->AddGrowableCol(1, 1);
 
-		vSizer->Add(
-			fgSizer,
+		sizBox->Add(
+			sizGrid,
 			0,
 			wxEXPAND
 		);
@@ -109,7 +133,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 			FromDIP(5)
 		);
 
-		vSizer->Add(
+		sizBox->Add(
 			hSizer,
 			1,
 			wxTOP | wxEXPAND,
@@ -142,4 +166,21 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 	}
 
 	SetSizerAndFit(sizRoot);
+}
+
+void kiwi::DlgNewMap::OnChoiceMapType(wxCommandEvent& e)
+{
+	if (cmbMapType->GetSelection() == 0)
+	{
+		// orthogonal map type
+		cmbMapSubtype->Hide();
+		sizMapType->Layout();
+	}
+	else
+	{
+		// non-orthogonal map type
+		cmbMapSubtype->Show();
+		sizMapType->Layout();
+	}
+	//this->Fit();
 }

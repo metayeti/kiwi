@@ -22,6 +22,7 @@
 #include "../kiwi.h"
 #include "dlg_newmap.h"
 #include "../const.h"
+#include "../res/svg_resources.h"
 
 kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 //: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
@@ -32,7 +33,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 
 	auto sizRoot = new wxBoxSizer(wxVERTICAL);
 
-	auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 200)));
+	auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 250)));
 	sizRoot->Add(
 		panDialogElements,
 		1,
@@ -64,7 +65,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 
 		cmbMapSubtype = new wxChoice(panDialogElements, wxID_ANY, wxDefaultPosition, wxDefaultSize);
 		cmbMapSubtype->Append(std::vector<wxString>{
-			"Normal",
+			"Staggered",
 			"Diamond"
 		});
 		cmbMapSubtype->Select(0);
@@ -113,6 +114,23 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 			wxEXPAND
 		);
 
+		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ORTHOGONAL, wxSize(128, 64)));
+		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ISOMETRIC_STAGGERED, wxSize(128, 64)));
+		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ISOMETRIC_DIAMOND, wxSize(128, 64)));
+		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE1_STAGGERED, wxSize(128, 64)));
+		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE1_DIAMOND, wxSize(128, 64)));
+		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE2_STAGGERED, wxSize(128, 64)));
+		auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE2_DIAMOND, wxSize(128, 64)));
+
+		//bmpIcon->SetBackgroundColour(wxColour(*wxWHITE));
+
+		sizBox->Add(
+			bmpIcon,
+			0,
+			wxALIGN_CENTER | wxTOP,
+			borderSize
+		);
+
 		auto hSizer = new wxBoxSizer(wxHORIZONTAL);
 
 		auto box1 = new wxStaticBox(panDialogElements, wxID_ANY, "Map Size");
@@ -136,8 +154,9 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		sizBox->Add(
 			hSizer,
 			1,
-			wxTOP | wxEXPAND,
-			borderSize
+			wxEXPAND
+			//wxTOP | wxEXPAND,
+			//borderSize
 		);
 	}
 

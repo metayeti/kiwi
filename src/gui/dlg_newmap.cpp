@@ -24,9 +24,117 @@
 #include "../const.h"
 #include "../res/svg_resources.h"
 
+void kiwi::DlgNewMap::UpdateMapGraphic()
+{
+	for (const auto bmpComponent : vecBmpGraphic)
+	{
+		bmpComponent->Hide();
+	}
+
+	int mapTypeSelection = cmbMapType->GetSelection();
+	int mapSubtypeSelection = cmbMapIsoSubtype->GetSelection();
+	int mapHexTypeSelection = cmbMapHexSubtype->GetSelection();
+
+	switch (mapTypeSelection)
+	{
+		case 0: // orthogonal map type
+			vecBmpGraphic[0]->Show();
+
+			break;
+
+		case 1: // isometric map type
+			switch (mapSubtypeSelection)
+			{
+				case 0: // staggered type
+					vecBmpGraphic[1]->Show();
+					break;
+				case 1: // diamond type
+					vecBmpGraphic[2]->Show();
+					break;
+			}
+
+			break;
+
+		case 2: // hexagonal map type
+
+			switch (mapHexTypeSelection)
+			{
+			case 0: // hex type 1
+				vecBmpGraphic[3]->Show();
+				break;
+			case 1: // hex type 2
+				vecBmpGraphic[4]->Show();
+				break;
+			}
+
+			break;
+	}
+
+	sizBox->Layout();
+
+	/*
+	if (mapTypeSelection == 0)
+	{
+		// orthogonal map type
+		vecBmpGraphic[0]->Show();
+	}
+	else if (mapTypeSelection == 1)
+	{
+		// isometric map type
+		if (mapSubtypeSelection == 0) {
+			vecBmpGraphic[1]->Show();
+		}
+		else if (mapSubtypeSelection == 1) {
+			vecBmpGraphic[2]->Show();
+		}
+	}
+	else if (mapTypeSelection == 2)
+	{
+		// hexagonal map type
+
+	}
+	*/
+}
+
+void kiwi::DlgNewMap::OnChoiceMapType(wxCommandEvent& e)
+{
+	int mapTypeSelection = cmbMapType->GetSelection();
+	if (mapTypeSelection == 0)
+	{
+		// orthogonal map type
+		cmbMapHexSubtype->Hide();
+		cmbMapIsoSubtype->Hide();
+	}
+	else if (mapTypeSelection == 1)
+	{
+		// isometric map type
+		cmbMapHexSubtype->Hide();
+		cmbMapIsoSubtype->Show();
+	}
+	else if (mapTypeSelection == 2) {
+		// hexagonal map type
+		cmbMapHexSubtype->Show();
+		cmbMapIsoSubtype->Hide();
+	}
+	sizMapType->Layout();
+	//this->Fit();
+
+	UpdateMapGraphic();
+}
+
+void kiwi::DlgNewMap::OnChoiceMapHexType(wxCommandEvent& e)
+{
+	UpdateMapGraphic();
+}
+
+void kiwi::DlgNewMap::OnChoiceMapSubtype(wxCommandEvent& e)
+{
+	UpdateMapGraphic();
+}
+
 kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 //: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
-: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
+	: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
 {
 	const int borderSize = FromDIP(GUI_DEFAULT_BORDER_SIZE);
 	const int halfBorderSize = FromDIP(GUI_HALF_BORDER_SIZE);
@@ -41,7 +149,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		borderSize
 	);
 	{
-		auto sizBox = new wxBoxSizer(wxVERTICAL);
+		sizBox = new wxBoxSizer(wxVERTICAL);
 		panDialogElements->SetSizer(sizBox);
 
 		sizGrid = new wxFlexGridSizer(2, 2, FromDIP(10), FromDIP(25));
@@ -57,20 +165,30 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		cmbMapType = new wxChoice(panDialogElements, wxID_ANY, wxDefaultPosition, wxDefaultSize);
 		cmbMapType->Append(std::vector<wxString>{
 			"Orthogonal",
-			"Isometric",
-			"Hexagonal"
+				"Isometric",
+				"Hexagonal"
 		});
 		cmbMapType->Select(0);
 		Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceMapType, this, cmbMapType->GetId());
 
-		cmbMapSubtype = new wxChoice(panDialogElements, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-		cmbMapSubtype->Append(std::vector<wxString>{
-			"Staggered",
-			"Diamond"
+		cmbMapHexSubtype = new wxChoice(panDialogElements, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+		cmbMapHexSubtype->Append(std::vector<wxString>{
+			"Type 1",
+				"Type 2"
 		});
-		cmbMapSubtype->Select(0);
-		cmbMapSubtype->Hide();
-		
+		cmbMapHexSubtype->Select(0);
+		cmbMapHexSubtype->Hide();
+		Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceMapHexType, this, cmbMapHexSubtype->GetId());
+
+		cmbMapIsoSubtype = new wxChoice(panDialogElements, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+		cmbMapIsoSubtype->Append(std::vector<wxString>{
+			"Staggered",
+				"Diamond"
+		});
+		cmbMapIsoSubtype->Select(0);
+		cmbMapIsoSubtype->Hide();
+		Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceMapSubtype, this, cmbMapIsoSubtype->GetId());
+
 		sizMapType->Add(
 			cmbMapType,
 			2,
@@ -78,7 +196,13 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 			halfBorderSize
 		);
 		sizMapType->Add(
-			cmbMapSubtype,
+			cmbMapHexSubtype,
+			1,
+			wxLEFT,
+			borderSize
+		);
+		sizMapType->Add(
+			cmbMapIsoSubtype,
 			1,
 			wxLEFT,
 			borderSize
@@ -114,22 +238,45 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 			wxEXPAND
 		);
 
+		//vecBmpGraphic = {
+		vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ORTHOGONAL, wxSize(128, 64))));
+		vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ISOMETRIC_STAGGERED, wxSize(128, 64))));
+		vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ISOMETRIC_DIAMOND, wxSize(128, 64))));
+		vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE1, wxSize(128, 64))));
+		vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE2, wxSize(128, 64))));
+		//};
+
+		for (const auto bmpComponent : vecBmpGraphic)
+		{
+			bmpComponent->Hide();
+
+			sizBox->Add(
+				bmpComponent,
+				0,
+				wxALIGN_CENTER | wxTOP,
+				borderSize
+			);
+		}
+
+
 		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ORTHOGONAL, wxSize(128, 64)));
 		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ISOMETRIC_STAGGERED, wxSize(128, 64)));
 		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_ISOMETRIC_DIAMOND, wxSize(128, 64)));
 		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE1_STAGGERED, wxSize(128, 64)));
 		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE1_DIAMOND, wxSize(128, 64)));
 		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE2_STAGGERED, wxSize(128, 64)));
-		auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE2_DIAMOND, wxSize(128, 64)));
+		//auto bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_MAPTYPE_HEXAGONAL_TYPE2_DIAMOND, wxSize(128, 64)));
 
 		//bmpIcon->SetBackgroundColour(wxColour(*wxWHITE));
 
+		/*
 		sizBox->Add(
-			bmpIcon,
+			vecBmpGraphic[0],
 			0,
 			wxALIGN_CENTER | wxTOP,
 			borderSize
 		);
+		*/
 
 		auto hSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -184,22 +331,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		);
 	}
 
-	SetSizerAndFit(sizRoot);
-}
+	UpdateMapGraphic();
 
-void kiwi::DlgNewMap::OnChoiceMapType(wxCommandEvent& e)
-{
-	if (cmbMapType->GetSelection() == 0)
-	{
-		// orthogonal map type
-		cmbMapSubtype->Hide();
-		sizMapType->Layout();
-	}
-	else
-	{
-		// non-orthogonal map type
-		cmbMapSubtype->Show();
-		sizMapType->Layout();
-	}
-	//this->Fit();
+	SetSizerAndFit(sizRoot);
 }

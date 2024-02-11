@@ -69,6 +69,7 @@ namespace kiwi
 	
 	// help strings
 	const char* const QUICKHELP_ACTION_FILE_NEW = "Create a new map";
+	const char* const QUICKHELP_ACTION_FILE_NEW_FROM_TEMPLATE = "Create a map from existing template";
 	const char* const QUICKHELP_ACTION_FILE_OPEN = "Open an existing map";
 	const char* const QUICKHELP_ACTION_FILE_SAVE = "Save this map";
 	const char* const QUICKHELP_ACTION_FILE_SAVE_AS = "Save this map as";

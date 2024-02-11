@@ -154,6 +154,10 @@ void kiwi::FrmMain::InitializeGlobalMenu()
 		menuFile.root->Append(menuNew);
 		Bind(wxEVT_MENU, &FrmMain::OnMenuFileNew, this, menuNew->GetId());
 
+		auto& menuNewFromTemplate = menuFile.members.menuNewFromTemplate;
+		menuNewFromTemplate = new wxMenuItem(menuFile.root, wxID_ANY, "New &From Template...\tCtrl+Shift+N", QUICKHELP_ACTION_FILE_NEW_FROM_TEMPLATE);
+		menuFile.root->Append(menuNewFromTemplate);
+
 		menuFile.root->AppendSeparator();
 
 		auto& menuOpen = menuFile.members.menuOpen;

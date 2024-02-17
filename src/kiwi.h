@@ -48,6 +48,7 @@
 #include "wx/wxprec.h"
 #ifndef WX_PRECOMP
 	#include "wx/wx.h"
+	#include "wx/spinctrl.h"
 #endif
 
 // ~~~ VLD ~~~ uncomment to enable leak detection

@@ -115,8 +115,9 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 	: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
 {
 	const int borderSize = FromDIP(GUI_DEFAULT_BORDER_SIZE);
+	const int doubleBorderSize = FromDIP(GUI_DOUBLE_BORDER_SIZE);
 	const int halfBorderSize = FromDIP(GUI_HALF_BORDER_SIZE);
-	const int hGap = FromDIP(GUI_DEFAULT_GRID_HORIZONTAL_GAP);
+	const int hGapSize = FromDIP(GUI_DEFAULT_GRID_HORIZONTAL_GAP);
 
 	auto sizRoot = new wxBoxSizer(wxVERTICAL); // root sizer
 
@@ -131,37 +132,37 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		sizDialogElements = new wxBoxSizer(wxVERTICAL);
 		panDialogElements->SetSizer(sizDialogElements);
 		{
-			auto sizFlexGrid = new wxFlexGridSizer(2, 2, borderSize, FromDIP(25));
-			sizFlexGrid->AddGrowableCol(1, 1);
+			auto sizFlexGrid1 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+			sizFlexGrid1->AddGrowableCol(1, 1);
 			sizDialogElements->Add(
-				sizFlexGrid,
+				sizFlexGrid1,
 				0,
 				wxEXPAND
 			);
 			{
 				auto lblMapName = new wxStaticText(panDialogElements, wxID_ANY, "Map name:");
-				sizFlexGrid->Add(
+				sizFlexGrid1->Add(
 					lblMapName,
 					0,
 					wxALIGN_CENTER_VERTICAL
 				);
 
 				auto txtMapName = new wxTextCtrl(panDialogElements, wxID_ANY, "Untitled");
-				sizFlexGrid->Add(
+				sizFlexGrid1->Add(
 					txtMapName,
 					1,
 					wxEXPAND
 				);
 
 				auto lblGridType = new wxStaticText(panDialogElements, wxID_ANY, "Grid type:");
-				sizFlexGrid->Add(
+				sizFlexGrid1->Add(
 					lblGridType,
 					0,
 					wxALIGN_CENTER_VERTICAL
 				);
 
 				sizBox1 = new wxBoxSizer(wxHORIZONTAL);
-				sizFlexGrid->Add(
+				sizFlexGrid1->Add(
 					sizBox1,
 					0,
 					wxEXPAND
@@ -237,17 +238,67 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 				wxEXPAND
 			);
 			{
-				auto box1 = new wxStaticBox(panDialogElements, wxID_ANY, "Map Size");
+				auto boxMapSize = new wxStaticBox(panDialogElements, wxID_ANY, "Map Size");
 				sizBox2->Add(
-					box1,
+					boxMapSize,
 					1,
 					wxRIGHT | wxEXPAND,
 					halfBorderSize
 				);
 
-				auto box2 = new wxStaticBox(panDialogElements, wxID_ANY, "Grid Size");
+				/*
+				auto sizBox3 = new wxBoxSizer(wxVERTICAL);
+				boxMapSize->SetSizer(sizBox3);
+				*/
+
+				auto sizBox3 = new wxBoxSizer(wxHORIZONTAL);
+				boxMapSize->SetSizer(sizBox3);
+
+				//boxMapSize->SetSizer(sizFlexGrid2);
+				{
+					auto sizFlexGrid2 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+					sizFlexGrid2->AddGrowableCol(1, 1);
+					sizBox3->Add(
+						sizFlexGrid2,
+						0,
+						wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT,
+						doubleBorderSize
+					);
+					{
+						auto lblMapWidth = new wxStaticText(boxMapSize, wxID_ANY, "Width:");
+						sizFlexGrid2->Add(
+							lblMapWidth,
+							0,
+							wxALIGN_CENTER_VERTICAL
+						);
+
+						auto spnMapWidth = new wxSpinCtrl(boxMapSize, wxID_ANY, "1");
+						sizFlexGrid2->Add(
+							spnMapWidth,
+							1,
+							wxEXPAND
+						);
+
+						auto lblMapHeight = new wxStaticText(boxMapSize, wxID_ANY, "Height:");
+						sizFlexGrid2->Add(
+							lblMapHeight,
+							0,
+							wxALIGN_CENTER_VERTICAL
+						);
+
+						auto spnMapHeight = new wxSpinCtrl(boxMapSize, wxID_ANY, "1");
+						sizFlexGrid2->Add(
+							spnMapHeight,
+							1,
+							wxEXPAND
+						);
+					}
+				}
+
+
+				auto boxCellSize = new wxStaticBox(panDialogElements, wxID_ANY, "Cell Size");
 				sizBox2->Add(
-					box2,
+					boxCellSize,
 					1,
 					wxLEFT | wxEXPAND,
 					halfBorderSize

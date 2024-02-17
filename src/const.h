@@ -45,10 +45,10 @@ namespace kiwi
 
 	// map constraints
 	const size_t MAP_NAME_MAX_LENGTH = 100;
-	const size_t MAP_MIN_W = 1;
-	const size_t MAP_MIN_H = 1;
-	const size_t MAP_MAX_W = 1000;
-	const size_t MAP_MAX_H = 1000;
+	const size_t MAP_MIN_WIDTH = 1;
+	const size_t MAP_MIN_HEIGHT = 1;
+	const size_t MAP_MAX_WIDTH = 1000;
+	const size_t MAP_MAX_HEIGHT = 1000;
 
 	// layer constraints
 	const size_t LAYER_NAME_MAX_LENGTH = 100;

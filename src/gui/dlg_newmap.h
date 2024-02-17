@@ -38,7 +38,6 @@ namespace kiwi
 		wxChoice* cmbGridType;
 		wxChoice* cmbIsoGridType;
 		wxChoice* cmbHexGridType;
-
 		wxVector<wxStaticBitmap*> vecBmpGraphic;
 
 		////////////////////////////////////////////////////////////////////////

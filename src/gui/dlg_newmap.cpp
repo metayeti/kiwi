@@ -111,8 +111,8 @@ void kiwi::DlgNewMap::OnChoiceHexGridType(wxCommandEvent& e)
 }
 
 kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
-//: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
-: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
+: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
+//: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
 {
 	const int borderSize = FromDIP(GUI_DEFAULT_BORDER_SIZE);
 	const int doubleBorderSize = FromDIP(GUI_DOUBLE_BORDER_SIZE);
@@ -121,9 +121,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 
 	auto sizRoot = new wxBoxSizer(wxVERTICAL); // root sizer
 
-	//auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 250)));
-	auto panDialogElements = new wxPanel(this, wxID_ANY);
-	panDialogElements->SetMinSize(FromDIP(wxSize(400, 265)));
+	auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 265)));
 	sizRoot->Add(
 		panDialogElements,
 		1,
@@ -216,11 +214,21 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 				}
 			}
 
-			vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_ORTHOGONAL, wxSize(128, 64))));
-			vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_ISOMETRIC_STAGGERED, wxSize(128, 64))));
-			vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_ISOMETRIC_DIAMOND, wxSize(128, 64))));
-			vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_HEXAGONAL_FLAT_TOP, wxSize(128, 64))));
-			vecBmpGraphic.push_back(new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_HEXAGONAL_POINTY_TOP, wxSize(128, 64))));
+			vecBmpGraphic.push_back(
+				new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_ORTHOGONAL, wxSize(128, 64)))
+			);
+			vecBmpGraphic.push_back(
+				new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_ISOMETRIC_STAGGERED, wxSize(128, 64)))
+			);
+			vecBmpGraphic.push_back(
+				new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_ISOMETRIC_DIAMOND, wxSize(128, 64)))
+			);
+			vecBmpGraphic.push_back(
+				new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_HEXAGONAL_FLAT_TOP, wxSize(128, 64)))
+			);
+			vecBmpGraphic.push_back(
+				new wxStaticBitmap(panDialogElements, wxID_ANY, wxBitmapBundle::FromSVG(SVG_GRAPHIC_GRIDTYPE_HEXAGONAL_POINTY_TOP, wxSize(128, 64)))
+			);
 
 			for (const auto bmpComponent : vecBmpGraphic)
 			{
@@ -252,44 +260,55 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 					boxMapSize->SetSizer(sizBox3);
 					{
 
+						//auto sizFlexGrid2 = new wxFlexGridSizer(3, 2, borderSize, hGapSize);
 						auto sizFlexGrid2 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+						//sizFlexGrid2->AddStretchSpacer(1);
+						//sizFlexGrid2->AddStretchSpacer(1);
 						sizFlexGrid2->AddGrowableCol(1, 1);
 						sizBox3->Add(
 							sizFlexGrid2,
 							1,
-							wxALIGN_CENTER_VERTICAL | wxALL,
-							doubleBorderSize
+							wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
+							//doubleBorderSize
+							borderSize
 						);
 						{
 							auto lblMapWidth = new wxStaticText(boxMapSize, wxID_ANY, "Width:");
 							sizFlexGrid2->Add(
 								lblMapWidth,
 								0,
-								wxALIGN_CENTER_VERTICAL
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
 							);
 
 							auto spnMapWidth = new wxSpinCtrl(boxMapSize, wxID_ANY, "100");
+							spnMapWidth->SetMin(MAP_MIN_WIDTH);
+							spnMapWidth->SetMax(MAP_MAX_WIDTH);
 							sizFlexGrid2->Add(
 								spnMapWidth,
 								1,
-								wxEXPAND
+								wxEXPAND | wxRIGHT,
+								borderSize
 							);
 
 							auto lblMapHeight = new wxStaticText(boxMapSize, wxID_ANY, "Height:");
 							sizFlexGrid2->Add(
 								lblMapHeight,
 								0,
-								wxALIGN_CENTER_VERTICAL
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
 							);
 
 							auto spnMapHeight = new wxSpinCtrl(boxMapSize, wxID_ANY, "100");
+							spnMapHeight->SetMin(MAP_MIN_HEIGHT);
+							spnMapHeight->SetMax(MAP_MAX_HEIGHT);
 							sizFlexGrid2->Add(
 								spnMapHeight,
 								1,
-								wxEXPAND
+								wxEXPAND | wxRIGHT,
+								borderSize
 							);
 						}
-
 					}
 				}
 				
@@ -300,7 +319,24 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 					wxLEFT | wxEXPAND,
 					halfBorderSize
 				);
-
+				{
+					/*
+					auto sizBox4 = new wxBoxSizer(wxHORIZONTAL);
+					boxCellSize->SetSizer(sizBox4);
+					{
+						auto sizFlexGrid3 = new wxFlexGridSizer(3, 2, borderSize, hGapSize);
+						sizFlexGrid3->AddStretchSpacer(1);
+						sizFlexGrid3->AddStretchSpacer(1);
+						sizFlexGrid3->AddGrowableCol(1, 1);
+						sizBox4->Add(
+							sizFlexGrid3,
+							1,
+							wxEXPAND | wxALL,
+							doubleBorderSize
+						);
+					}
+					*/
+				}
 			}
 			auto chkRememberSettings = new wxCheckBox(panDialogElements, wxID_ANY, "Remember these settings");
 			sizDialogElements->Add(

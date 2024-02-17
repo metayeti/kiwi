@@ -386,7 +386,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		sizDialogButtons->Add(
 			btnOk,
 			0,
-			wxEXPAND | wxRIGHT | wxBOTTOM,
+			wxRIGHT | wxBOTTOM,
 			borderSize
 		);
 
@@ -394,7 +394,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 		sizDialogButtons->Add(
 			btnCancel,
 			0,
-			wxEXPAND | wxRIGHT | wxBOTTOM,
+			wxRIGHT | wxBOTTOM,
 			borderSize
 		);
 	}

@@ -19,8 +19,6 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
-
 #ifndef KIWI_CONST_H_
 #define KIWI_CONST_H_
 
@@ -64,6 +62,7 @@ namespace kiwi
 	// GUI constants
 	const int GUI_DEFAULT_BORDER_SIZE = 10;
 	const int GUI_HALF_BORDER_SIZE = 5;
+	const int GUI_DEFAULT_GRID_HORIZONTAL_GAP = 25;
 	const int GUI_DEFAULT_BUTTON_WIDTH = 110;
 	const int GUI_DEFAULT_BUTTON_HEIGHT = 30;
 	
@@ -89,7 +88,7 @@ namespace kiwi
 	const char* const QUICKHELP_ACTION_EDIT_PASTE = "Paste from clipboard";
 	const char* const QUICKHELP_ACTION_EDIT_DELETE = "Delete selection";
 
-	const char* const QUICKHELP_ACTION_TOOLS_SETTINGS = "Show the settigs dialog";
+	const char* const QUICKHELP_ACTION_TOOLS_SETTINGS = "Open the program settings dialog";
 
 	const char* const QUICKHELP_ACTION_HELP_USER_MANUAL = "Open online help";
 	const char* const QUICKHELP_ACTION_HELP_CHECK_FOR_UPDATES = "Check online repository for updates";

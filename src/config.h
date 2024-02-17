@@ -19,8 +19,6 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
-
 #ifndef KIWI_CONFIG_H_
 #define KIWI_CONFIG_H_
 
@@ -179,4 +177,4 @@ namespace kiwi
 	};
 }
 
-#endif // KIWI_CONFIG_H
+#endif // KIWI_CONFIG_H_

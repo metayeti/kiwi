@@ -19,8 +19,6 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
-
 #ifndef KIWI_DLG_NEWMAP_H_
 #define KIWI_DLG_NEWMAP_H_
 
@@ -35,14 +33,11 @@ namespace kiwi
 		//
 		////////////////////////////////////////////////////////////////////////
 
-		wxBoxSizer* sizBox;
-
-		wxFlexGridSizer* sizGrid;
-		wxBoxSizer* sizMapType;
-
-		wxChoice* cmbMapType;
-		wxChoice* cmbMapIsoSubtype;
-		wxChoice* cmbMapHexSubtype;
+		wxBoxSizer* sizDialogElements;
+		wxBoxSizer* sizBox1;
+		wxChoice* cmbGridType;
+		wxChoice* cmbIsoGridType;
+		wxChoice* cmbHexGridType;
 
 		wxVector<wxStaticBitmap*> vecBmpGraphic;
 
@@ -61,9 +56,9 @@ namespace kiwi
 		////////////////////////////////////////////////////////////////////////
 
 		// menubar events
-		void OnChoiceMapType(wxCommandEvent& e);
-		void OnChoiceMapHexType(wxCommandEvent& e);
-		void OnChoiceMapSubtype(wxCommandEvent& e);
+		void OnChoiceGridType(wxCommandEvent& e);
+		void OnChoiceIsoGridType(wxCommandEvent& e);
+		void OnChoiceHexGridType(wxCommandEvent& e);
 
 	public:
 		DlgNewMap(wxWindow* parent);

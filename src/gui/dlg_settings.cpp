@@ -13,33 +13,11 @@
 ///
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
-///  application.h
+///  dlg_settings.cpp
 ///  ---
-///  Application header.
+///  Settings dialog implementation.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef KIWI_APPLICATION_H_
-#define KIWI_APPLICATION_H_
-
-namespace kiwi
-{
-	class Application : public wxApp
-	{
-	private:
-		Config config;
-	public:
-		/**
-		 * Initialize the application and show the main window.
-		 * Also loads the application configuration.
-		 */
-		virtual bool OnInit() override;
-
-		/**
-		 * Retreive (preloaded) application configuration.
-		 */
-		Config* GetConfig();
-	};
-}
-
-#endif // KIWI_APPLICATION_H_
+#include "../kiwi.h"
+#include "dlg_settings.h"

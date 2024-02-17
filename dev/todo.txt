@@ -1,6 +1,7 @@
 - 0.0.2 -
 [ ] Map, layer concepts
 [ ] New Map dialog
+[ ] Basic app menu structure
 
 - 0.0.1 -
 [x] Persistent window geometry

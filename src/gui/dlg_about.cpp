@@ -103,5 +103,5 @@ kiwi::DlgAbout::DlgAbout(wxWindow* parent)
 		);
 	}
 
-	SetSizerAndFit(sizRoot); // fit everything _only_ after the entire dialog and all of its components have been created
+	SetSizerAndFit(sizRoot); // fit everything only _after_ the entire dialog and all of its components have been created
 }

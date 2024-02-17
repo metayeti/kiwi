@@ -19,8 +19,6 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
-
 #ifndef KIWI_FRM_MAIN_H_
 #define KIWI_FRM_MAIN_H_
 
@@ -29,6 +27,12 @@ namespace kiwi
 	class FrmMain : public wxFrame
 	{
 	private:
+		////////////////////////////////////////////////////////////////////////
+		//
+		//  Frame variables
+		//
+		////////////////////////////////////////////////////////////////////////
+
 		Application* application = nullptr;
 
 		// most recent window geometry pre-maximization
@@ -129,6 +133,10 @@ namespace kiwi
 			struct MenuTools
 			{
 				wxMenu* root;
+				struct Members
+				{
+					wxMenuItem* menuSettings;
+				} members;
 			} menuTools;
 
 			// -- Help --
@@ -173,6 +181,8 @@ namespace kiwi
 		// menubar events
 		void OnMenuFileNew(wxCommandEvent& e);
 		void OnMenuFileQuit(wxCommandEvent& e);
+
+		void OnMenuToolsSettings(wxCommandEvent& e);
 
 		void OnMenuHelpUserManual(wxCommandEvent& e);
 		void OnMenuHelpCheckForUpdates(wxCommandEvent& e);

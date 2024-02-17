@@ -111,11 +111,10 @@ void kiwi::DlgNewMap::OnChoiceHexGridType(wxCommandEvent& e)
 }
 
 kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
-: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
-//: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
+//: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
+: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
 {
 	const int borderSize = FromDIP(GUI_DEFAULT_BORDER_SIZE);
-	const int doubleBorderSize = FromDIP(GUI_DOUBLE_BORDER_SIZE);
 	const int halfBorderSize = FromDIP(GUI_HALF_BORDER_SIZE);
 	const int hGapSize = FromDIP(GUI_DEFAULT_GRID_HORIZONTAL_GAP);
 
@@ -259,17 +258,12 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 					auto sizBox3 = new wxBoxSizer(wxHORIZONTAL);
 					boxMapSize->SetSizer(sizBox3);
 					{
-
-						//auto sizFlexGrid2 = new wxFlexGridSizer(3, 2, borderSize, hGapSize);
 						auto sizFlexGrid2 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
-						//sizFlexGrid2->AddStretchSpacer(1);
-						//sizFlexGrid2->AddStretchSpacer(1);
 						sizFlexGrid2->AddGrowableCol(1, 1);
 						sizBox3->Add(
 							sizFlexGrid2,
 							1,
 							wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
-							//doubleBorderSize
 							borderSize
 						);
 						{
@@ -320,22 +314,55 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 					halfBorderSize
 				);
 				{
-					/*
 					auto sizBox4 = new wxBoxSizer(wxHORIZONTAL);
 					boxCellSize->SetSizer(sizBox4);
 					{
-						auto sizFlexGrid3 = new wxFlexGridSizer(3, 2, borderSize, hGapSize);
-						sizFlexGrid3->AddStretchSpacer(1);
-						sizFlexGrid3->AddStretchSpacer(1);
+						auto sizFlexGrid3 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
 						sizFlexGrid3->AddGrowableCol(1, 1);
 						sizBox4->Add(
 							sizFlexGrid3,
 							1,
-							wxEXPAND | wxALL,
-							doubleBorderSize
+							wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
+							borderSize
 						);
+						{
+							auto lblCellWidth = new wxStaticText(boxCellSize, wxID_ANY, "Width:");
+							sizFlexGrid3->Add(
+								lblCellWidth,
+								0,
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
+							);
+
+							auto spnCellWidth = new wxSpinCtrl(boxCellSize, wxID_ANY, "50");
+							spnCellWidth->SetMin(CELL_MIN_WIDTH);
+							spnCellWidth->SetMax(CELL_MAX_WIDTH);
+							sizFlexGrid3->Add(
+								spnCellWidth,
+								1,
+								wxEXPAND | wxRIGHT,
+								borderSize
+							);
+
+							auto lblCellHeight = new wxStaticText(boxCellSize, wxID_ANY, "Height:");
+							sizFlexGrid3->Add(
+								lblCellHeight,
+								0,
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
+							);
+
+							auto spnCellHeight = new wxSpinCtrl(boxCellSize, wxID_ANY, "50");
+							spnCellHeight->SetMin(CELL_MIN_HEIGHT);
+							spnCellHeight->SetMax(CELL_MAX_HEIGHT);
+							sizFlexGrid3->Add(
+								spnCellHeight,
+								1,
+								wxEXPAND | wxRIGHT,
+								borderSize
+							);
+						}
 					}
-					*/
 				}
 			}
 			auto chkRememberSettings = new wxCheckBox(panDialogElements, wxID_ANY, "Remember these settings");

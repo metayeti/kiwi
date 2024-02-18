@@ -75,7 +75,7 @@ def updateResourceFile(version):
 def updateConstH(version):
 	consthfile = os.path.normpath('../src/const.h')
 	for i, line in enumerate(fileinput.input(consthfile, inplace=True)):
-		if i + 1 == 31:
+		if i + 1 == 29:
 			nextline = '\tconst char* const KIWI_VERSION = "{version}";'.format(version = version)
 			print(nextline)
 		else:

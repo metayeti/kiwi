@@ -27,7 +27,7 @@ targetFile = '../src/res/ini_resources.h'
 inputFile = '../dev/config.ini'
 
 # target line-number
-lineToUpdate = 30
+lineToUpdate = 28
 
 # target string format
 lineFormat = '\tconst char* const INI_CONFIG = "{inidata}";'

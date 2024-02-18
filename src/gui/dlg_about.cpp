@@ -25,7 +25,7 @@
 #include "../util.h"
 #include "../const.h"
 
-// -- xpm resources --
+// -- resources --
 #include "../res/xpm/kiwi.xpm"
 
 kiwi::DlgAbout::DlgAbout(wxWindow* parent)

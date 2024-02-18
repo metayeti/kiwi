@@ -127,6 +127,16 @@ namespace kiwi
 			struct MenuLayer
 			{
 				wxMenu* root;
+				struct Members
+				{
+					wxMenuItem* menuCreateNew;
+					wxMenuItem* menuDuplicate;
+					wxMenuItem* menuMerge;
+					wxMenuItem* menuDelete;
+					wxMenuItem* menuRaise;
+					wxMenuItem* menuLower;
+					wxMenuItem* menuLayerProperties;
+				} members;
 			} menuLayer;
 
 			// -- Tools --
@@ -181,6 +191,9 @@ namespace kiwi
 		// menubar events
 		void OnMenuFileNew(wxCommandEvent& e);
 		void OnMenuFileQuit(wxCommandEvent& e);
+
+		void OnMenuLayerCreateNew(wxCommandEvent& e);
+		void OnMenuLayerLayerProperties(wxCommandEvent& e);
 
 		void OnMenuToolsSettings(wxCommandEvent& e);
 

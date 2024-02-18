@@ -13,16 +13,16 @@
 ///
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
-///  dlg_settings.cpp
+///  dlg_newlayer.cpp
 ///  ---
-///  Settings dialog implementation.
+///  New layer dialog implementation.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "../kiwi.h"
-#include "dlg_settings.h"
+#include "dlg_newlayer.h"
 
-kiwi::DlgSettings::DlgSettings(wxWindow* parent)
-: wxDialog(parent, wxID_ANY, "Settings", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
+kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
+: wxDialog(parent, wxID_ANY, "New Layer", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
 {
 }

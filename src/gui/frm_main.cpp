@@ -25,8 +25,15 @@
 #include "../application.h"
 #include "../util.h"
 #include "frm_main.h"
+
+// -- dialogs --
 #include "dlg_newmap.h"
+#include "dlg_newlayer.h"
+#include "dlg_layerproperties.h"
+#include "dlg_settings.h"
 #include "dlg_about.h"
+
+// -- resources --
 #include "../res/svg_resources.h"
 #include "../res/xpm_resources.h"
 
@@ -57,7 +64,7 @@ kiwi::FrmMain::StatusBar::StatusBar(wxWindow* parent, long style)
 	SetStatusWidths(Field_Max, widths);
 
 	cmbZoomLevel = new wxComboBox(this, wxID_ANY, wxEmptyString);
-	cmbZoomLevel->Append(std::vector<wxString>{ "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%" });
+	cmbZoomLevel->Append(wxArrayString{ "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%" });
 	cmbZoomLevel->Select(3);
 
 	SetMinHeight(cmbZoomLevel->GetMinHeight());
@@ -82,8 +89,25 @@ void kiwi::FrmMain::OnMenuFileQuit(wxCommandEvent& e)
 	Close(false);
 }
 
+void kiwi::FrmMain::OnMenuLayerCreateNew(wxCommandEvent& e)
+{
+	DlgNewLayer* dlgNewLayer = new DlgNewLayer(this);
+	dlgNewLayer->CenterOnParent();
+	dlgNewLayer->ShowModal();
+}
+
+void kiwi::FrmMain::OnMenuLayerLayerProperties(wxCommandEvent& e)
+{
+	DlgLayerProperties* dlgLayerProperties = new DlgLayerProperties(this);
+	dlgLayerProperties->CenterOnParent();
+	dlgLayerProperties->ShowModal();
+}
+
 void kiwi::FrmMain::OnMenuToolsSettings(wxCommandEvent& e)
 {
+	DlgSettings* dlgSettings = new DlgSettings(this);
+	dlgSettings->CenterOnParent();
+	dlgSettings->ShowModal();
 }
 
 void kiwi::FrmMain::OnMenuHelpUserManual(wxCommandEvent& e)
@@ -254,6 +278,39 @@ void kiwi::FrmMain::InitializeGlobalMenu()
 	auto& menuLayer = menuBar.menuLayer;
 	menuBar.root->Append((menuLayer.root = new wxMenu()), "&Layer");
 	{
+		auto& menuCreateNew = menuLayer.members.menuCreateNew;
+		menuCreateNew = new wxMenuItem(menuLayer.root, wxID_ANY, "&Create New...\tCtrl+Shift+N", QUICKHELP_ACTION_LAYER_CREATE_NEW);
+		menuLayer.root->Append(menuCreateNew);
+		Bind(wxEVT_MENU, &FrmMain::OnMenuLayerCreateNew, this, menuCreateNew->GetId());
+
+		auto& menuDuplicate = menuLayer.members.menuDuplicate;
+		menuDuplicate = new wxMenuItem(menuLayer.root, wxID_ANY, "&Duplicate\tCtrl+Shift+D", QUICKHELP_ACTION_LAYER_DUPLICATE);
+		menuLayer.root->Append(menuDuplicate);
+
+		auto& menuMerge = menuLayer.members.menuMerge;
+		menuMerge = new wxMenuItem(menuLayer.root, wxID_ANY, "&Merge...\tCtrl+Shift+M", QUICKHELP_ACTION_LAYER_MERGE);
+		menuLayer.root->Append(menuMerge);
+
+		auto& menuDelete = menuLayer.members.menuDelete;
+		menuDelete = new wxMenuItem(menuLayer.root, wxID_ANY, "Dele&te", QUICKHELP_ACTION_LAYER_DELETE);
+		menuLayer.root->Append(menuDelete);
+
+		menuLayer.root->AppendSeparator();
+
+		auto& menuRaise = menuLayer.members.menuRaise;
+		menuRaise = new wxMenuItem(menuLayer.root, wxID_ANY, "&Raise\tCtrl+PgUp", QUICKHELP_ACTION_LAYER_RAISE);
+		menuLayer.root->Append(menuRaise);
+
+		auto& menuLower = menuLayer.members.menuLower;
+		menuLower = new wxMenuItem(menuLayer.root, wxID_ANY, "&Lower\tCtrl+PgDn", QUICKHELP_ACTION_LAYER_LOWER);
+		menuLayer.root->Append(menuLower);
+
+		menuLayer.root->AppendSeparator();
+
+		auto& menuLayerProperties = menuLayer.members.menuLayerProperties;
+		menuLayerProperties = new wxMenuItem(menuLayer.root, wxID_ANY, "Layer &Properties...\tF7", QUICKHELP_ACTION_LAYER_LAYER_PROPERTIES);
+		menuLayer.root->Append(menuLayerProperties);
+		Bind(wxEVT_MENU, &FrmMain::OnMenuLayerLayerProperties, this, menuLayerProperties->GetId());
 	}
 
 	// -- Tools --

@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 ///   __    __         __ 
 ///  |  | _|__|_  _  _|__|   Kit for Interactive World Integration
 ///  |  |/ /  \ \/ \/ /  |   A 2D game map editor
@@ -13,16 +13,16 @@
 ///
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
-///  dlg_settings.cpp
+///  dlg_layerproperties.cpp
 ///  ---
-///  Settings dialog implementation.
+///  Layer properties dialog implementation.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "../kiwi.h"
-#include "dlg_settings.h"
+#include "dlg_layerproperties.h"
 
-kiwi::DlgSettings::DlgSettings(wxWindow* parent)
-: wxDialog(parent, wxID_ANY, "Settings", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
+kiwi::DlgLayerProperties::DlgLayerProperties(wxWindow* parent)
+: wxDialog(parent, wxID_ANY, "Layer Properties", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
 {
 }

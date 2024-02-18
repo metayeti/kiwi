@@ -13,40 +13,31 @@
 ///
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
-///  dlg_newmap.h
+///  dlg_newlayer.h
 ///  ---
-///  New map dialog header.
+///  New layer dialog header.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef KIWI_DLG_NEWMAP_H_
-#define KIWI_DLG_NEWMAP_H_
+#ifndef KIWI_DLG_NEWLAYER_H_
+#define KIWI_DLG_NEWLAYER_H_
 
 namespace kiwi
 {
-	class DlgNewMap : public wxDialog
+	class DlgNewLayer : public wxDialog
 	{
 	private:
 		////////////////////////////////////////////////////////////////////////
-		//
+		// 
 		//  Dialog components
-		//
+		// 
 		////////////////////////////////////////////////////////////////////////
 
-		wxBoxSizer* sizDialogElements;
-		wxBoxSizer* sizBox1;
-		wxChoice* cmbGridType;
-		wxChoice* cmbIsoGridType;
-		wxChoice* cmbHexGridType;
-		wxVector<wxStaticBitmap*> vecBmpGraphic;
-
 		////////////////////////////////////////////////////////////////////////
-		//
+		// 
 		//  Dialog actions
-		//
+		// 
 		////////////////////////////////////////////////////////////////////////
-
-		void UpdateMapGraphic();
 
 		////////////////////////////////////////////////////////////////////////
 		// 
@@ -54,16 +45,9 @@ namespace kiwi
 		// 
 		////////////////////////////////////////////////////////////////////////
 
-		// dialog elements events
-		void OnChoiceGridType(wxCommandEvent& e);
-		void OnChoiceIsoGridType(wxCommandEvent& e);
-		void OnChoiceHexGridType(wxCommandEvent& e);
-
-		// TODO dialog button events
-
 	public:
-		DlgNewMap(wxWindow* parent);
+		DlgNewLayer(wxWindow* parent);
 	};
 }
 
-#endif // KIWI_DLG_NEWMAP_H_
+#endif // KIWI_DLG_NEWLAYER_H_

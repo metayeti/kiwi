@@ -25,7 +25,7 @@
 namespace kiwi
 {
 	// current kiwi version
-	// == The following entry NEEDS to exist on line 31 so that "update_versions" utility can properly update it! ==
+	// == The following entry NEEDS to exist on line 29 so that "update_versions" utility can properly update it! ==
 	const char* const KIWI_VERSION = "0.0.2 dev";
 
 	// filenames
@@ -92,6 +92,14 @@ namespace kiwi
 	const char* const QUICKHELP_ACTION_EDIT_COPY = "Copy selection";
 	const char* const QUICKHELP_ACTION_EDIT_PASTE = "Paste from clipboard";
 	const char* const QUICKHELP_ACTION_EDIT_DELETE = "Delete selection";
+
+	const char* const QUICKHELP_ACTION_LAYER_CREATE_NEW = "Create a new layer";
+	const char* const QUICKHELP_ACTION_LAYER_DUPLICATE = "Duplicate this layer";
+	const char* const QUICKHELP_ACTION_LAYER_MERGE = "Merge this layer with another";
+	const char* const QUICKHELP_ACTION_LAYER_DELETE = "Delete this layer";
+	const char* const QUICKHELP_ACTION_LAYER_RAISE = "Raise this layer to one level above current";
+	const char* const QUICKHELP_ACTION_LAYER_LOWER = "Lower this layer to one level below current";
+	const char* const QUICKHELP_ACTION_LAYER_LAYER_PROPERTIES = "Open the layer properties dialog";
 
 	const char* const QUICKHELP_ACTION_TOOLS_SETTINGS = "Open the program settings dialog";
 

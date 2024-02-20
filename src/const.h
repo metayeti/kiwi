@@ -68,6 +68,7 @@ namespace kiwi
 	const int GUI_DOUBLE_BORDER_SIZE = 20;
 	const int GUI_HALF_BORDER_SIZE = 5;
 	const int GUI_DEFAULT_GRID_HORIZONTAL_GAP = 25;
+	const int GUI_GROUP_BOX_VERTICAL_SPACING = 24;
 	const int GUI_DEFAULT_BUTTON_WIDTH = 110;
 	const int GUI_DEFAULT_BUTTON_HEIGHT = 30;
 	

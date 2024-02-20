@@ -252,7 +252,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 				sizBox2->Add(
 					boxMapSize,
 					1,
-					wxRIGHT | wxEXPAND,
+					wxEXPAND | wxRIGHT,
 					halfBorderSize
 				);
 				{
@@ -311,7 +311,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 				sizBox2->Add(
 					boxCellSize,
 					1,
-					wxLEFT | wxEXPAND,
+					wxEXPAND | wxLEFT,
 					halfBorderSize
 				);
 				{
@@ -401,6 +401,5 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 	}
 
 	UpdateMapGraphic();
-
 	SetSizerAndFit(sizRoot);
 }

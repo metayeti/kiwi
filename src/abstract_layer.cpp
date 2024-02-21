@@ -22,6 +22,7 @@
 #include <string>
 
 #include "abstract_layer.h"
+#include "const.h"
 
 kiwi::AbstractLayer::AbstractLayer()
 {
@@ -38,5 +39,5 @@ std::string const& kiwi::AbstractLayer::GetName() const
 
 void kiwi::AbstractLayer::SetName(std::string name)
 {
-	this->name = name;
+	this->name = name.substr(0, LAYER_NAME_MAX_LENGTH);
 }

@@ -54,12 +54,9 @@ namespace kiwi
 		// 
 		////////////////////////////////////////////////////////////////////////
 
-		// dialog elements events
 		void OnChoiceGridType(wxCommandEvent& e);
 		void OnChoiceIsoGridType(wxCommandEvent& e);
 		void OnChoiceHexGridType(wxCommandEvent& e);
-
-		// TODO dialog button events
 
 	public:
 		DlgNewMap(wxWindow* parent);

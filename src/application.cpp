@@ -41,7 +41,7 @@ bool kiwi::Application::OnInit()
 	if (firstRun)
 	{
 		// if this is our first run, treat dimensions specified in the config as DPI-dependent values
-		// (this is to ensure that the first run on a high DPI display won't show a tiny window)
+		// (this is to ensure that the first run on a high DPI display won't result in a tiny window)
 		window->SetSize(window->FromDIP(wxSize(size.first, size.second)));
 	}
 	else

@@ -23,16 +23,38 @@
 #include "dlg_newlayer.h"
 #include "../const.h"
 
+void kiwi::DlgNewLayer::EnableDisableComponents()
+{
+	if (chkMatchMapSize->IsChecked()) {
+		spnLayerWidth->Enable(false);
+		spnLayerHeight->Enable(false);
+		spnOffsetLeft->Enable(false);
+		spnOffsetTop->Enable(false);
+	}
+	else {
+		spnLayerWidth->Enable(true);
+		spnLayerHeight->Enable(true);
+		spnOffsetLeft->Enable(true);
+		spnOffsetTop->Enable(true);
+	}
+}
+
+void kiwi::DlgNewLayer::OnCheckBoxMatchMapSize(wxCommandEvent& e)
+{
+	EnableDisableComponents();
+}
+
 kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
 : wxDialog(parent, wxID_ANY, "Create a New Layer", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
 	const int borderSize = FromDIP(GUI_DEFAULT_BORDER_SIZE);
+	const int halfBorderSize = FromDIP(GUI_HALF_BORDER_SIZE);
 	const int hGapSize = FromDIP(GUI_DEFAULT_GRID_HORIZONTAL_GAP);
-	const int groupBoxVerticalSpacing = FromDIP(GUI_GROUP_BOX_VERTICAL_SPACING);
 
 	auto sizRoot = new wxBoxSizer(wxVERTICAL); // root sizer
 
-	auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 200)));
+	auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition);
+	panDialogElements->SetMinSize(FromDIP(wxSize(400, 210)));
 	sizRoot->Add(
 		panDialogElements,
 		1,
@@ -86,33 +108,143 @@ kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
 				);
 			}
 
-			auto boxLayerSize = new wxStaticBox(panDialogElements, wxID_ANY, "Layer Size");
+			chkMatchMapSize = new wxCheckBox(panDialogElements, wxID_ANY, "Match map size");
+			chkMatchMapSize->SetValue(true);
 			sizDialogElements->Add(
-				boxLayerSize,
+				chkMatchMapSize,
+				0,
+				wxTOP,
+				borderSize * 2
+			);
+			chkMatchMapSize->Bind(wxEVT_CHECKBOX, &DlgNewLayer::OnCheckBoxMatchMapSize, this);
+
+			auto sizBox2 = new wxBoxSizer(wxHORIZONTAL);
+			sizDialogElements->Add(
+				sizBox2,
 				1,
 				wxEXPAND | wxTOP,
 				borderSize
 			);
 			{
-				auto sizBox1 = new wxBoxSizer(wxVERTICAL);
-				boxLayerSize->SetSizer(sizBox1);
+				auto boxLayerSize = new wxStaticBox(panDialogElements, wxID_ANY, "Layer Size");
+				sizBox2->Add(
+					boxLayerSize,
+					1,
+					wxEXPAND | wxRIGHT,
+					halfBorderSize
+				);
 				{
-					auto sizBox2 = new wxBoxSizer(wxVERTICAL);
-					sizBox1->Add(
-						sizBox2,
-						0,
-						wxEXPAND | wxTOP,
-						groupBoxVerticalSpacing
-					);
+					auto sizBox3 = new wxBoxSizer(wxHORIZONTAL);
+					boxLayerSize->SetSizer(sizBox3);
 					{
-						auto chkMatchMapSize = new wxCheckBox(boxLayerSize, wxID_ANY, "Match map size");
-						chkMatchMapSize->SetValue(true);
-						sizBox2->Add(
-							chkMatchMapSize,
-							0,
-							wxLEFT,
+						auto sizFlexGrid2 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+						sizFlexGrid2->AddGrowableCol(1, 1);
+						sizBox3->Add(
+							sizFlexGrid2,
+							1,
+							wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
 							borderSize
 						);
+						{
+							auto lblWidth = new wxStaticText(boxLayerSize, wxID_ANY, "Width:");
+							sizFlexGrid2->Add(
+								lblWidth,
+								0,
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
+							);
+
+							spnLayerWidth = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
+							spnLayerWidth->SetMin(MAP_MIN_WIDTH);
+							spnLayerWidth->SetMax(MAP_MAX_WIDTH);
+							spnLayerWidth->Enable(false);
+							sizFlexGrid2->Add(
+								spnLayerWidth,
+								1,
+								wxEXPAND | wxRIGHT,
+								borderSize
+							);
+
+							auto lblHeight = new wxStaticText(boxLayerSize, wxID_ANY, "Height:");
+							sizFlexGrid2->Add(
+								lblHeight,
+								0,
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
+							);
+
+							spnLayerHeight = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
+							spnLayerHeight->SetMin(MAP_MIN_HEIGHT);
+							spnLayerHeight->SetMax(MAP_MAX_HEIGHT);
+							spnLayerHeight->Enable(false);
+							sizFlexGrid2->Add(
+								spnLayerHeight,
+								1,
+								wxEXPAND | wxRIGHT,
+								borderSize
+							);
+						}
+					}
+				}
+
+				auto boxLayerOffset = new wxStaticBox(panDialogElements, wxID_ANY, "Layer Offset");
+				sizBox2->Add(
+					boxLayerOffset,
+					1,
+					wxEXPAND | wxLEFT,
+					halfBorderSize
+				);
+				{
+					auto sizBox4 = new wxBoxSizer(wxHORIZONTAL);
+					boxLayerOffset->SetSizer(sizBox4);
+					{
+						auto sizFlexGrid3 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+						sizFlexGrid3->AddGrowableCol(1, 1);
+						sizBox4->Add(
+							sizFlexGrid3,
+							1,
+							wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
+							borderSize
+						);
+						{
+							auto lblLeft = new wxStaticText(boxLayerOffset, wxID_ANY, "Left:");
+							sizFlexGrid3->Add(
+								lblLeft,
+								0,
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
+							);
+
+							spnOffsetLeft = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
+							spnOffsetLeft->SetMin(0);
+							spnOffsetLeft->SetMax(1000);  // TODO: get from map size
+							spnOffsetLeft->Enable(false);
+							sizFlexGrid3->Add(
+								spnOffsetLeft,
+								1,
+								wxEXPAND | wxRIGHT,
+								borderSize
+							);
+
+							auto lblTop = new wxStaticText(boxLayerOffset, wxID_ANY, "Top:");
+							sizFlexGrid3->Add(
+								lblTop,
+								0,
+								wxALIGN_CENTER_VERTICAL | wxLEFT,
+								borderSize
+							);
+
+							spnOffsetTop = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
+							spnOffsetTop->SetMin(0);
+							spnOffsetTop->SetMax(1000);  // TODO: get from map size
+							spnOffsetTop->Enable(false);
+							sizFlexGrid3->Add(
+								spnOffsetTop,
+								1,
+								wxEXPAND | wxRIGHT,
+								borderSize
+							);
+						}
 					}
 				}
 			}

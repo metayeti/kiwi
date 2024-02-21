@@ -121,7 +121,8 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 
 	auto sizRoot = new wxBoxSizer(wxVERTICAL); // root sizer
 
-	auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 265)));
+	auto panDialogElements = new wxPanel(this, wxID_ANY, wxDefaultPosition);
+	panDialogElements->SetMinSize(FromDIP(wxSize(400, 265)));
 	sizRoot->Add(
 		panDialogElements,
 		1,
@@ -175,7 +176,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 						"Hexagonal"
 					});
 					cmbGridType->Select(0);
-					Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceGridType, this, cmbGridType->GetId());
+					cmbGridType->Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceGridType, this);
 					sizBox1->Add(
 						cmbGridType,
 						2,
@@ -189,7 +190,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 					});
 					cmbIsoGridType->Select(0);
 					cmbIsoGridType->Hide();
-					Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceIsoGridType, this, cmbIsoGridType->GetId());
+					cmbIsoGridType->Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceIsoGridType, this);
 					sizBox1->Add(
 						cmbIsoGridType,
 						1,
@@ -204,7 +205,7 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 					});
 					cmbHexGridType->Select(0);
 					cmbHexGridType->Hide();
-					Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceHexGridType, this, cmbHexGridType->GetId());
+					cmbHexGridType->Bind(wxEVT_CHOICE, &DlgNewMap::OnChoiceHexGridType, this);
 					sizBox1->Add(
 						cmbHexGridType,
 						1,
@@ -268,9 +269,9 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 							borderSize
 						);
 						{
-							auto lblMapWidth = new wxStaticText(boxMapSize, wxID_ANY, "Width:");
+							auto lblWidth = new wxStaticText(boxMapSize, wxID_ANY, "Width:");
 							sizFlexGrid2->Add(
-								lblMapWidth,
+								lblWidth,
 								0,
 								wxALIGN_CENTER_VERTICAL | wxLEFT,
 								borderSize
@@ -286,9 +287,9 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 								borderSize
 							);
 
-							auto lblMapHeight = new wxStaticText(boxMapSize, wxID_ANY, "Height:");
+							auto lblHeight = new wxStaticText(boxMapSize, wxID_ANY, "Height:");
 							sizFlexGrid2->Add(
-								lblMapHeight,
+								lblHeight,
 								0,
 								wxALIGN_CENTER_VERTICAL | wxLEFT,
 								borderSize
@@ -327,9 +328,9 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 							borderSize
 						);
 						{
-							auto lblCellWidth = new wxStaticText(boxCellSize, wxID_ANY, "Width:");
+							auto lblWidth = new wxStaticText(boxCellSize, wxID_ANY, "Width:");
 							sizFlexGrid3->Add(
-								lblCellWidth,
+								lblWidth,
 								0,
 								wxALIGN_CENTER_VERTICAL | wxLEFT,
 								borderSize
@@ -345,9 +346,9 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 								borderSize
 							);
 
-							auto lblCellHeight = new wxStaticText(boxCellSize, wxID_ANY, "Height:");
+							auto lblHeight = new wxStaticText(boxCellSize, wxID_ANY, "Height:");
 							sizFlexGrid3->Add(
-								lblCellHeight,
+								lblHeight,
 								0,
 								wxALIGN_CENTER_VERTICAL | wxLEFT,
 								borderSize

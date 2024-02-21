@@ -147,11 +147,11 @@ void kiwi::Config::SetUnsignedIntPair(std::string const& category, std::string c
 
 void kiwi::Config::Read(bool& firstRun)
 {
-	if (!Util::FileExists(FILENAME_CONFIG_INI))
+	if (!Util::FileExists(KIWI_INI_FILENAME))
 	{
 		firstRun = true;
 		// config file is missing, create one
-		std::ofstream out(FILENAME_CONFIG_INI);
+		std::ofstream out(KIWI_INI_FILENAME);
 		out << INI_CONFIG;
 		out.close();
 	}
@@ -160,7 +160,7 @@ void kiwi::Config::Read(bool& firstRun)
 		firstRun = false;
 	}
 	// attempt to read the config file
-	mINI::INIFile ini(FILENAME_CONFIG_INI);
+	mINI::INIFile ini(KIWI_INI_FILENAME);
 	if (!ini.read(data)) {
 		// could not read config data, load defaults instead
 		LoadDefaults();
@@ -169,6 +169,6 @@ void kiwi::Config::Read(bool& firstRun)
 
 void kiwi::Config::Write()
 {
-	mINI::INIFile ini(FILENAME_CONFIG_INI);
+	mINI::INIFile ini(KIWI_INI_FILENAME);
 	ini.write(data);
 }

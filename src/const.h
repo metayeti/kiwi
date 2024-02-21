@@ -29,7 +29,7 @@ namespace kiwi
 	const char* const KIWI_VERSION = "0.0.2 dev";
 
 	// filenames
-	const char* const FILENAME_CONFIG_INI = "kiwi.ini";
+	const char* const KIWI_INI_FILENAME = "kiwi.ini";
 
 	// URLs
 	const char* const URL_GITHUB_MANUAL = "https://github.com/metayeti/kiwi/tree/main/manual/";
@@ -58,17 +58,17 @@ namespace kiwi
 	const size_t LAYER_NAME_MAX_LENGTH = 100;
 
 	// serialization constants
-	const std::string KIWFILE_BINARY_BGN_POINT = "kiw>";
-	const std::string KIWFILE_BINARY_END_POINT = "<wik";
-	const std::string MAPFILE_BINARY_BGN_POINT = "map>";
-	const std::string MAPFILE_BINARY_END_POINT = "<pam";
+	const std::string KIWFILE_BINARY_BGN_POINT = "kw>";
+	const std::string KIWFILE_BINARY_END_POINT = "<wk";
+	const std::string MAPFILE_BINARY_BGN_POINT = "mp>";
+	const std::string MAPFILE_BINARY_END_POINT = "<pm";
 	
 	// GUI constants
 	const int GUI_DEFAULT_BORDER_SIZE = 10;
 	const int GUI_DOUBLE_BORDER_SIZE = 20;
 	const int GUI_HALF_BORDER_SIZE = 5;
 	const int GUI_DEFAULT_GRID_HORIZONTAL_GAP = 25;
-	const int GUI_GROUP_BOX_VERTICAL_SPACING = 24;
+	/////const int GUI_GROUP_BOX_VERTICAL_SPACING = 24; // might need later
 	const int GUI_DEFAULT_BUTTON_WIDTH = 110;
 	const int GUI_DEFAULT_BUTTON_HEIGHT = 30;
 	

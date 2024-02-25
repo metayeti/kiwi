@@ -15,8 +15,8 @@
 ///
 ///  dlg_about.cpp
 ///  ---
-///  About dialog implementation. The commented remarks in this source file also
-///  serve as a basic reference for dialog code style used across the codebase.
+///  About dialog implementation. Also serves as a sort of quick rundown on
+///  dialog coding stye in this codebase.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -24,9 +24,22 @@
 #include "dlg_about.h"
 #include "../util.h"
 #include "../const.h"
+#include "dlg_game.h"
 
 // -- resources --
 #include "../res/xpm/kiwi.xpm"
+
+void kiwi::DlgAbout::OnDoubleClickBmpIcon(wxMouseEvent& e)
+{
+	//
+	// ,.-~` easter egg `~-.,
+	//
+
+	// open the game window
+	auto dlgGame = new DlgGame(this);
+	dlgGame->CenterOnParent();
+	dlgGame->ShowModal();
+}
 
 kiwi::DlgAbout::DlgAbout(wxWindow* parent)
 : wxDialog(parent, wxID_ANY, "About kiwi", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
@@ -35,29 +48,37 @@ kiwi::DlgAbout::DlgAbout(wxWindow* parent)
 
 	auto sizRoot = new wxBoxSizer(wxVERTICAL); // this is the root sizer
 
-	// create a "dialog elements" sizer
-	auto sizDialogElements = new wxBoxSizer(wxHORIZONTAL); // use auto when creating elements on the fly
-	sizRoot->Add( // always expand the arguments of Add() for visibility
-		sizDialogElements,
-		0,
-		wxEXPAND,
+	// always create a panel that holds all dialog elements (apart from the bottom-row buttons)
+	auto panDialogElements = new wxPanel(this, wxID_ANY); // use auto when creating anonymous elements
+	sizRoot->Add(
+		panDialogElements,
+		1,
+		wxEXPAND | wxALL,
 		borderSize
 	);
+	// create a "dialog elements" sizer
+	auto sizDialogElements = new wxBoxSizer(wxHORIZONTAL);
+	panDialogElements->SetSizer(sizDialogElements);
 	  // use scope to indicate inner elements
-	{ // (technically this achieves nothing, but it's a handy stylistic choice to make code navigation easier)
+	{ // (technically this achieves nothing (sort of*), but it's a handy stylistic choice to make code navigation easier)
+	  //
+	  // (* it allows creation of (anonymous) elements of same name in different containers)
 
 		// create an element - in this case, the kiwi program icon
-		auto bmpIcon = new wxStaticBitmap(this, wxID_ANY, Util::XPMToBitmapBundle(kiwi_xpm, 64, 64));
+		bmpIcon = new wxStaticBitmap(panDialogElements, wxID_ANY, Util::XPMToBitmapBundle(kiwi_xpm, 64, 64));
 		// -> if there are properties to apply to the created element, ideally set them here <-
+		// bind any events at this point
+		bmpIcon->Bind(wxEVT_LEFT_DCLICK, &DlgAbout::OnDoubleClickBmpIcon, this);
+		// finally, add element to a sizer
 		sizDialogElements->Add( // make the Add call the last in line within block for the most recently created element
 			bmpIcon,
 			0,
-			wxALL,
+			wxRIGHT,
 			borderSize
 		); // leave blank lines between elements
 
-		// create another element, in this case the dialog text
-		auto sizText = CreateTextSizer(
+		// create another element, in this case the dialog text label
+		auto lblAbout = new wxStaticText(panDialogElements, wxID_ANY, (
 			"kiwi\n"
 			"Kit for Interactive World Integration\n\n"
 			"v" + wxString(KIWI_VERSION) + " "
@@ -75,27 +96,28 @@ kiwi::DlgAbout::DlgAbout(wxWindow* parent)
 			"\n\n"
 			"Copyright " + wxString::FromUTF8("\xc2\xa9") + " 2024 Danijel Durakovic\n"
 			"Licensed under the terms of GPLv3"
-		);
+		));
 		sizDialogElements->Add( // always expand Add() for visibility
-			sizText,
+			lblAbout,
 			0,
-			wxALL,
+			wxLEFT,
 			borderSize
 		);
 	}
 
 	// create a "dialog buttons" sizer
 	auto sizDialogButtons = new wxBoxSizer(wxHORIZONTAL);
-	sizRoot->Add( // yes, i am going to keep reminding you to expand Add()
+	// (here we use just the sizer directly, without the panel, so we add it to the root sizer)
+	sizRoot->Add( // i am going to keep reminding you to expand Add() to multiple lines
 		sizDialogButtons,
 		0,
 		wxALIGN_RIGHT
 	);
-	{ // again we use scope to indicate inner components
+	{ // once more we use scope to indicate inner components
 
 		// create a button element
 		auto btnOkay = new wxButton(this, wxID_OK, "Okay", wxDefaultPosition, FromDIP(wxSize(GUI_DEFAULT_BUTTON_WIDTH, GUI_DEFAULT_BUTTON_HEIGHT)));
-		sizDialogButtons->Add( // what did we say about expanding Add()?
+		sizDialogButtons->Add( // remember that thing we said about expanding Add() to multiple lines?
 			btnOkay,
 			0,
 			wxEXPAND | wxRIGHT | wxBOTTOM | wxTOP,

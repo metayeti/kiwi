@@ -61,190 +61,188 @@ kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
 		wxEXPAND | wxALL,
 		borderSize
 	);
-	{
-		auto sizDialogElements = new wxBoxSizer(wxVERTICAL);
-		panDialogElements->SetSizer(sizDialogElements);
+	auto sizDialogElements = new wxBoxSizer(wxVERTICAL);
+	panDialogElements->SetSizer(sizDialogElements);
+	{		
+		auto sizFlexGrid = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+		sizFlexGrid->AddGrowableCol(1, 1);
+		sizDialogElements->Add(
+			sizFlexGrid,
+			0,
+			wxEXPAND
+		);
 		{
-			auto sizFlexGrid = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
-			sizFlexGrid->AddGrowableCol(1, 1);
-			sizDialogElements->Add(
-				sizFlexGrid,
+			auto lblLayerName = new wxStaticText(panDialogElements, wxID_ANY, "Layer name:");
+			sizFlexGrid->Add(
+				lblLayerName,
 				0,
+				wxALIGN_CENTER_VERTICAL
+			);
+
+			auto txtLayerName = new wxTextCtrl(panDialogElements, wxID_ANY, "New Layer");
+			sizFlexGrid->Add(
+				txtLayerName,
+				1,
 				wxEXPAND
 			);
-			{
-				auto lblLayerName = new wxStaticText(panDialogElements, wxID_ANY, "Layer name:");
-				sizFlexGrid->Add(
-					lblLayerName,
-					0,
-					wxALIGN_CENTER_VERTICAL
-				);
 
-				auto txtLayerName = new wxTextCtrl(panDialogElements, wxID_ANY, "New Layer");
-				sizFlexGrid->Add(
-					txtLayerName,
-					1,
-					wxEXPAND
-				);
-
-				auto lblLayerType = new wxStaticText(panDialogElements, wxID_ANY, "Layer type:");
-				sizFlexGrid->Add(
-					lblLayerType,
-					0,
-					wxALIGN_CENTER_VERTICAL
-				);
-
-				auto cmbLayerType = new wxChoice(panDialogElements, wxID_ANY);
-				cmbLayerType->Append(wxArrayString{
-					"Tile layer",
-					"Object layer",
-					"Geometry layer"
-				});
-				cmbLayerType->Select(0);
-				sizFlexGrid->Add(
-					cmbLayerType,
-					1,
-					wxEXPAND
-				);
-			}
-
-			chkMatchMapSize = new wxCheckBox(panDialogElements, wxID_ANY, "Match map size");
-			chkMatchMapSize->SetValue(true);
-			sizDialogElements->Add(
-				chkMatchMapSize,
+			auto lblLayerType = new wxStaticText(panDialogElements, wxID_ANY, "Layer type:");
+			sizFlexGrid->Add(
+				lblLayerType,
 				0,
-				wxTOP,
-				borderSize * 2
+				wxALIGN_CENTER_VERTICAL
 			);
-			chkMatchMapSize->Bind(wxEVT_CHECKBOX, &DlgNewLayer::OnCheckBoxMatchMapSize, this);
 
-			auto sizBox2 = new wxBoxSizer(wxHORIZONTAL);
-			sizDialogElements->Add(
-				sizBox2,
+			auto cmbLayerType = new wxChoice(panDialogElements, wxID_ANY);
+			cmbLayerType->Append(wxArrayString{
+				"Tile layer",
+				"Object layer",
+				"Geometry layer"
+			});
+			cmbLayerType->Select(0);
+			sizFlexGrid->Add(
+				cmbLayerType,
 				1,
-				wxEXPAND | wxTOP,
-				borderSize
+				wxEXPAND
+			);
+		}
+
+		chkMatchMapSize = new wxCheckBox(panDialogElements, wxID_ANY, "Match map size");
+		chkMatchMapSize->SetValue(true);
+		sizDialogElements->Add(
+			chkMatchMapSize,
+			0,
+			wxTOP,
+			borderSize * 2
+		);
+		chkMatchMapSize->Bind(wxEVT_CHECKBOX, &DlgNewLayer::OnCheckBoxMatchMapSize, this);
+
+		auto sizBox2 = new wxBoxSizer(wxHORIZONTAL);
+		sizDialogElements->Add(
+			sizBox2,
+			1,
+			wxEXPAND | wxTOP,
+			borderSize
+		);
+		{
+			auto boxLayerSize = new wxStaticBox(panDialogElements, wxID_ANY, "Layer Size");
+			sizBox2->Add(
+				boxLayerSize,
+				1,
+				wxEXPAND | wxRIGHT,
+				halfBorderSize
 			);
 			{
-				auto boxLayerSize = new wxStaticBox(panDialogElements, wxID_ANY, "Layer Size");
-				sizBox2->Add(
-					boxLayerSize,
-					1,
-					wxEXPAND | wxRIGHT,
-					halfBorderSize
-				);
+				auto sizBox3 = new wxBoxSizer(wxHORIZONTAL);
+				boxLayerSize->SetSizer(sizBox3);
 				{
-					auto sizBox3 = new wxBoxSizer(wxHORIZONTAL);
-					boxLayerSize->SetSizer(sizBox3);
+					auto sizFlexGrid2 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+					sizFlexGrid2->AddGrowableCol(1, 1);
+					sizBox3->Add(
+						sizFlexGrid2,
+						1,
+						wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
+						borderSize
+					);
 					{
-						auto sizFlexGrid2 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
-						sizFlexGrid2->AddGrowableCol(1, 1);
-						sizBox3->Add(
-							sizFlexGrid2,
-							1,
-							wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
+						auto lblWidth = new wxStaticText(boxLayerSize, wxID_ANY, "Width:");
+						sizFlexGrid2->Add(
+							lblWidth,
+							0,
+							wxALIGN_CENTER_VERTICAL | wxLEFT,
 							borderSize
 						);
-						{
-							auto lblWidth = new wxStaticText(boxLayerSize, wxID_ANY, "Width:");
-							sizFlexGrid2->Add(
-								lblWidth,
-								0,
-								wxALIGN_CENTER_VERTICAL | wxLEFT,
-								borderSize
-							);
 
-							spnLayerWidth = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
-							spnLayerWidth->SetMin(MAP_MIN_WIDTH);
-							spnLayerWidth->SetMax(MAP_MAX_WIDTH);
-							spnLayerWidth->Enable(false);
-							sizFlexGrid2->Add(
-								spnLayerWidth,
-								1,
-								wxEXPAND | wxRIGHT,
-								borderSize
-							);
+						spnLayerWidth = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
+						spnLayerWidth->SetMin(MAP_MIN_WIDTH);
+						spnLayerWidth->SetMax(MAP_MAX_WIDTH);
+						spnLayerWidth->Enable(false);
+						sizFlexGrid2->Add(
+							spnLayerWidth,
+							1,
+							wxEXPAND | wxRIGHT,
+							borderSize
+						);
 
-							auto lblHeight = new wxStaticText(boxLayerSize, wxID_ANY, "Height:");
-							sizFlexGrid2->Add(
-								lblHeight,
-								0,
-								wxALIGN_CENTER_VERTICAL | wxLEFT,
-								borderSize
-							);
+						auto lblHeight = new wxStaticText(boxLayerSize, wxID_ANY, "Height:");
+						sizFlexGrid2->Add(
+							lblHeight,
+							0,
+							wxALIGN_CENTER_VERTICAL | wxLEFT,
+							borderSize
+						);
 
-							spnLayerHeight = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
-							spnLayerHeight->SetMin(MAP_MIN_HEIGHT);
-							spnLayerHeight->SetMax(MAP_MAX_HEIGHT);
-							spnLayerHeight->Enable(false);
-							sizFlexGrid2->Add(
-								spnLayerHeight,
-								1,
-								wxEXPAND | wxRIGHT,
-								borderSize
-							);
-						}
+						spnLayerHeight = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
+						spnLayerHeight->SetMin(MAP_MIN_HEIGHT);
+						spnLayerHeight->SetMax(MAP_MAX_HEIGHT);
+						spnLayerHeight->Enable(false);
+						sizFlexGrid2->Add(
+							spnLayerHeight,
+							1,
+							wxEXPAND | wxRIGHT,
+							borderSize
+						);
 					}
 				}
+			}
 
-				auto boxLayerOffset = new wxStaticBox(panDialogElements, wxID_ANY, "Layer Offset");
-				sizBox2->Add(
-					boxLayerOffset,
-					1,
-					wxEXPAND | wxLEFT,
-					halfBorderSize
-				);
+			auto boxLayerOffset = new wxStaticBox(panDialogElements, wxID_ANY, "Layer Offset");
+			sizBox2->Add(
+				boxLayerOffset,
+				1,
+				wxEXPAND | wxLEFT,
+				halfBorderSize
+			);
+			{
+				auto sizBox4 = new wxBoxSizer(wxHORIZONTAL);
+				boxLayerOffset->SetSizer(sizBox4);
 				{
-					auto sizBox4 = new wxBoxSizer(wxHORIZONTAL);
-					boxLayerOffset->SetSizer(sizBox4);
+					auto sizFlexGrid3 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
+					sizFlexGrid3->AddGrowableCol(1, 1);
+					sizBox4->Add(
+						sizFlexGrid3,
+						1,
+						wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
+						borderSize
+					);
 					{
-						auto sizFlexGrid3 = new wxFlexGridSizer(2, 2, borderSize, hGapSize);
-						sizFlexGrid3->AddGrowableCol(1, 1);
-						sizBox4->Add(
-							sizFlexGrid3,
-							1,
-							wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxTOP,
+						auto lblLeft = new wxStaticText(boxLayerOffset, wxID_ANY, "Left:");
+						sizFlexGrid3->Add(
+							lblLeft,
+							0,
+							wxALIGN_CENTER_VERTICAL | wxLEFT,
 							borderSize
 						);
-						{
-							auto lblLeft = new wxStaticText(boxLayerOffset, wxID_ANY, "Left:");
-							sizFlexGrid3->Add(
-								lblLeft,
-								0,
-								wxALIGN_CENTER_VERTICAL | wxLEFT,
-								borderSize
-							);
 
-							spnOffsetLeft = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
-							spnOffsetLeft->SetMin(0);
-							spnOffsetLeft->SetMax(1000);  // TODO: get from map size
-							spnOffsetLeft->Enable(false);
-							sizFlexGrid3->Add(
-								spnOffsetLeft,
-								1,
-								wxEXPAND | wxRIGHT,
-								borderSize
-							);
+						spnOffsetLeft = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
+						spnOffsetLeft->SetMin(0);
+						spnOffsetLeft->SetMax(1000);  // TODO: get from map size
+						spnOffsetLeft->Enable(false);
+						sizFlexGrid3->Add(
+							spnOffsetLeft,
+							1,
+							wxEXPAND | wxRIGHT,
+							borderSize
+						);
 
-							auto lblTop = new wxStaticText(boxLayerOffset, wxID_ANY, "Top:");
-							sizFlexGrid3->Add(
-								lblTop,
-								0,
-								wxALIGN_CENTER_VERTICAL | wxLEFT,
-								borderSize
-							);
+						auto lblTop = new wxStaticText(boxLayerOffset, wxID_ANY, "Top:");
+						sizFlexGrid3->Add(
+							lblTop,
+							0,
+							wxALIGN_CENTER_VERTICAL | wxLEFT,
+							borderSize
+						);
 
-							spnOffsetTop = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
-							spnOffsetTop->SetMin(0);
-							spnOffsetTop->SetMax(1000);  // TODO: get from map size
-							spnOffsetTop->Enable(false);
-							sizFlexGrid3->Add(
-								spnOffsetTop,
-								1,
-								wxEXPAND | wxRIGHT,
-								borderSize
-							);
-						}
+						spnOffsetTop = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
+						spnOffsetTop->SetMin(0);
+						spnOffsetTop->SetMax(1000);  // TODO: get from map size
+						spnOffsetTop->Enable(false);
+						sizFlexGrid3->Add(
+							spnOffsetTop,
+							1,
+							wxEXPAND | wxRIGHT,
+							borderSize
+						);
 					}
 				}
 			}

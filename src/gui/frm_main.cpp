@@ -37,6 +37,12 @@
 #include "../res/svg_resources.h"
 #include "../res/xpm_resources.h"
 
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Status bar subclass
+//
+////////////////////////////////////////////////////////////////////////////////
+
 void kiwi::FrmMain::StatusBar::OnSize(wxSizeEvent& e)
 {
 	wxRect rect;
@@ -76,6 +82,12 @@ kiwi::FrmMain::StatusBar::~StatusBar()
 {
 	
 }
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Menu events
+//
+////////////////////////////////////////////////////////////////////////////////
 
 void kiwi::FrmMain::OnMenuFileNew(wxCommandEvent& e)
 {
@@ -127,6 +139,12 @@ void kiwi::FrmMain::OnMenuHelpAbout(wxCommandEvent& e)
 	dlgAbout->ShowModal();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Window events
+//
+////////////////////////////////////////////////////////////////////////////////
+
 void kiwi::FrmMain::OnWindowMove(wxMoveEvent& e)
 {
 	if (!IsMaximized())
@@ -167,6 +185,12 @@ void kiwi::FrmMain::OnWindowClose(wxCloseEvent& e)
 	Destroy();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Initialization
+//
+////////////////////////////////////////////////////////////////////////////////
+
 void kiwi::FrmMain::InitializeGlobalMenu()
 {
 	SetMenuBar(menuBar.root = new wxMenuBar());
@@ -200,7 +224,6 @@ void kiwi::FrmMain::InitializeGlobalMenu()
 			menuNoRecentItems = new wxMenuItem(menuOpenRecent.root, wxID_ANY, "(no recent items)");
 			menuOpenRecent.root->Append(menuNoRecentItems);
 			menuNoRecentItems->Enable(false);
-
 		}
 
 		menuFile.root->AppendSeparator();

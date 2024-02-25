@@ -13,39 +13,17 @@
 ///
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
-///  dlg_about.h
+///  dlg_game.h
 ///  ---
-///  About dialog header.
+///  Game dialog implementation.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef KIWI_DLG_ABOUT_H_
-#define KIWI_DLG_ABOUT_H_
+#include "../kiwi.h"
+#include "dlg_game.h"
 
-namespace kiwi
+kiwi::DlgGame::DlgGame(wxWindow* parent)
+: wxDialog(parent, wxID_ANY, "Game", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
-	class DlgAbout : public wxDialog
-	{
-	private:
-		////////////////////////////////////////////////////////////////////////
-		//
-		//  Dialog components
-		//
-		////////////////////////////////////////////////////////////////////////
 
-		wxStaticBitmap* bmpIcon;
-
-		////////////////////////////////////////////////////////////////////////
-		// 
-		//  Dialog events
-		// 
-		////////////////////////////////////////////////////////////////////////
-
-		void OnDoubleClickBmpIcon(wxMouseEvent& e);
-
-	public:
-		DlgAbout(wxWindow* parent);
-	};
 }
-
-#endif // KIWI_DLG_ABOUT_H_

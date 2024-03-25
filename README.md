@@ -1,6 +1,6 @@
 # kiwi <img align="left" src="dev/logo_medium.png?raw=true" height="96">
 
-Kit for Interactive World Integration | v0.0.2 dev
+Kit for Interactive World Integration | v0.0.2
 
 ---
 

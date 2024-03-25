@@ -2,7 +2,7 @@
 ///   __    __         __ 
 ///  |  | _|__|_  _  _|__|   Kit for Interactive World Integration
 ///  |  |/ /  \ \/ \/ /  |   A 2D game map editor
-///  |    <|  |\  _  /|  |   ( version 0.0.2 dev )
+///  |    <|  |\  _  /|  |   ( version 0.0.2 )
 ///  |__|_ \__| \/ \/ |__|   https://github.com/metayeti/kiwi
 ///       \/              
 ///
@@ -26,7 +26,7 @@ namespace kiwi
 {
 	// current kiwi version
 	// == The following entry NEEDS to exist on line 29 so that "update_versions" utility can properly update it! ==
-	const char* const KIWI_VERSION = "0.0.2 dev";
+	const char* const KIWI_VERSION = "0.0.2";
 
 	// filenames
 	const char* const KIWI_INI_FILENAME = "kiwi.ini";

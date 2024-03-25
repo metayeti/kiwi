@@ -2,7 +2,7 @@
 ///   __    __         __ 
 ///  |  | _|__|_  _  _|__|   Kit for Interactive World Integration
 ///  |  |/ /  \ \/ \/ /  |   A 2D game map editor
-///  |    <|  |\  _  /|  |   ( version 0.0.2 dev )
+///  |    <|  |\  _  /|  |   ( version 0.0.2 )
 ///  |__|_ \__| \/ \/ |__|   https://github.com/metayeti/kiwi
 ///       \/              
 ///

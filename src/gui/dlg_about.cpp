@@ -31,6 +31,9 @@
 
 void kiwi::DlgAbout::OnDoubleClickBmpIcon(wxMouseEvent& e)
 {
+	///if (++(this->c) <3) return;
+	///this->c = 0;
+
 	//
 	// ,.-~` easter egg `~-.,
 	//

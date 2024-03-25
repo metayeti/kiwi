@@ -340,6 +340,8 @@ void kiwi::FrmMain::InitializeGlobalMenu()
 	auto& menuTools = menuBar.menuTools;
 	menuBar.root->Append((menuTools.root = new wxMenu()), "&Tools");
 	{
+		//auto& menuRun 
+
 		auto& menuSettings = menuTools.members.menuSettings;
 		menuSettings = new wxMenuItem(menuTools.root, wxID_ANY, "&Settings\tF8", QUICKHELP_ACTION_TOOLS_SETTINGS);
 		menuTools.root->Append(menuSettings);

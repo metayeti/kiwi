@@ -74,7 +74,7 @@ namespace kiwi
 		/**
 		 * Retreive layer name.
 		 *
-		 * @return Layer name.
+		 * @returns Layer name.
 		 */
 		std::string const& GetName() const;
 

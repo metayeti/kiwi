@@ -5,6 +5,10 @@
 https://brucey.net/programming/blitz/tutorials/prog/en/layoutmanagement.html
 https://neume.sourceforge.net/sizerdemo/
 
+> Video tutorials
+---
+[Custom controls] https://www.youtube.com/watch?v=FwUGeV2fnfM
+
 > Icon guides
 ---
 https://learn.microsoft.com/en-us/windows/win32/uxguide/vis-icons

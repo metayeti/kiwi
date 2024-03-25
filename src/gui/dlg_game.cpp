@@ -19,11 +19,14 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
+#include <string>
+#include <vector>
+
 #include "../kiwi.h"
 #include "dlg_game.h"
 
 kiwi::DlgGame::DlgGame(wxWindow* parent)
-: wxDialog(parent, wxID_ANY, "Game", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
+: wxDialog(parent, wxID_ANY, "smolRPG", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
 
 }

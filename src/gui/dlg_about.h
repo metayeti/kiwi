@@ -27,6 +27,8 @@ namespace kiwi
 	class DlgAbout : public wxDialog
 	{
 	private:
+		char c = 0;
+
 		////////////////////////////////////////////////////////////////////////
 		//
 		//  Dialog components

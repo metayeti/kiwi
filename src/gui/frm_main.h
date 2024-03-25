@@ -145,6 +145,7 @@ namespace kiwi
 				wxMenu* root;
 				struct Members
 				{
+					wxMenuItem* menuRun;
 					wxMenuItem* menuSettings;
 				} members;
 			} menuTools;

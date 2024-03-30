@@ -1,3 +1,8 @@
+- 0.0.3 -
+[ ] Menu structure
+[ ] Toolbar
+[ ] Basic editor interface
+
 - 0.0.2 -
 [x] Map, layer concepts
 [x] New map dialog, New layer dialog

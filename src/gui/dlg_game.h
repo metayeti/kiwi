@@ -111,14 +111,16 @@ namespace kiwi
 	class World
 	{
 	private:
-		using T_MapType = std::unique_ptr<int>;
-		using T_ItemDB = std::vector<Item>;
+		//using T_MapType = std::unique_ptr<int>;
+		//using T_ItemDB = std::vector<Item>;
 
+/*
 		T_MapType mapOverworld;
 		T_MapType mapCatacombs;
 		T_MapType mapIcaria;
 		T_MapType mapUnderworld;
 		T_MapType mapMorlona;
+		*/
 
 		void CreateItemDB();
 		void CreateEntityDB();

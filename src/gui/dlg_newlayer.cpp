@@ -154,8 +154,8 @@ kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
 						);
 
 						spnLayerWidth = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
-						spnLayerWidth->SetMin(MAP_MIN_WIDTH);
-						spnLayerWidth->SetMax(MAP_MAX_WIDTH);
+						//spnLayerWidth->SetMin(MAP_MIN_WIDTH);
+						//spnLayerWidth->SetMax(MAP_MAX_WIDTH);
 						spnLayerWidth->Enable(false);
 						sizFlexGrid2->Add(
 							spnLayerWidth,
@@ -173,8 +173,8 @@ kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
 						);
 
 						spnLayerHeight = new wxSpinCtrl(boxLayerSize, wxID_ANY, "25");
-						spnLayerHeight->SetMin(MAP_MIN_HEIGHT);
-						spnLayerHeight->SetMax(MAP_MAX_HEIGHT);
+						//spnLayerHeight->SetMin(MAP_MIN_HEIGHT);
+						//spnLayerHeight->SetMax(MAP_MAX_HEIGHT);
 						spnLayerHeight->Enable(false);
 						sizFlexGrid2->Add(
 							spnLayerHeight,
@@ -215,8 +215,8 @@ kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
 						);
 
 						spnOffsetLeft = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
-						spnOffsetLeft->SetMin(0);
-						spnOffsetLeft->SetMax(1000);  // TODO: get from map size
+						//spnOffsetLeft->SetMin(0);
+						//spnOffsetLeft->SetMax(1000);  // TODO: get from map size
 						spnOffsetLeft->Enable(false);
 						sizFlexGrid3->Add(
 							spnOffsetLeft,
@@ -234,8 +234,8 @@ kiwi::DlgNewLayer::DlgNewLayer(wxWindow* parent)
 						);
 
 						spnOffsetTop = new wxSpinCtrl(boxLayerOffset, wxID_ANY, "0");
-						spnOffsetTop->SetMin(0);
-						spnOffsetTop->SetMax(1000);  // TODO: get from map size
+						//spnOffsetTop->SetMin(0);
+						//spnOffsetTop->SetMax(1000);  // TODO: get from map size
 						spnOffsetTop->Enable(false);
 						sizFlexGrid3->Add(
 							spnOffsetTop,

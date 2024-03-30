@@ -8,6 +8,8 @@
 /res/*.aps
 # vscode ignored folders
 .vscode
+# root kiwi .ini
+/kiwi.ini
 # ignored folders
 .cache
 /build/

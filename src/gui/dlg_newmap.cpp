@@ -277,8 +277,8 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 						);
 
 						auto spnMapWidth = new wxSpinCtrl(boxMapSize, wxID_ANY, "100");
-						spnMapWidth->SetMin(MAP_MIN_WIDTH);
-						spnMapWidth->SetMax(MAP_MAX_WIDTH);
+						//spnMapWidth->SetMin(MAP_MIN_WIDTH);
+						//spnMapWidth->SetMax(MAP_MAX_WIDTH);
 						sizFlexGrid2->Add(
 							spnMapWidth,
 							1,
@@ -295,8 +295,8 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 						);
 
 						auto spnMapHeight = new wxSpinCtrl(boxMapSize, wxID_ANY, "100");
-						spnMapHeight->SetMin(MAP_MIN_HEIGHT);
-						spnMapHeight->SetMax(MAP_MAX_HEIGHT);
+						//spnMapHeight->SetMin(MAP_MIN_HEIGHT);
+						//spnMapHeight->SetMax(MAP_MAX_HEIGHT);
 						sizFlexGrid2->Add(
 							spnMapHeight,
 							1,
@@ -336,8 +336,8 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 						);
 
 						auto spnCellWidth = new wxSpinCtrl(boxCellSize, wxID_ANY, "50");
-						spnCellWidth->SetMin(CELL_MIN_WIDTH);
-						spnCellWidth->SetMax(CELL_MAX_WIDTH);
+						//spnCellWidth->SetMin(CELL_MIN_WIDTH);
+						//spnCellWidth->SetMax(CELL_MAX_WIDTH);
 						sizFlexGrid3->Add(
 							spnCellWidth,
 							1,
@@ -354,8 +354,8 @@ kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
 						);
 
 						auto spnCellHeight = new wxSpinCtrl(boxCellSize, wxID_ANY, "50");
-						spnCellHeight->SetMin(CELL_MIN_HEIGHT);
-						spnCellHeight->SetMax(CELL_MAX_HEIGHT);
+						//spnCellHeight->SetMin(CELL_MIN_HEIGHT);
+						//spnCellHeight->SetMax(CELL_MAX_HEIGHT);
 						sizFlexGrid3->Add(
 							spnCellHeight,
 							1,

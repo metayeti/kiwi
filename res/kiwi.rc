@@ -62,7 +62,7 @@ kiwi               ICON                    "..\\res\\kiwi.ico"
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION 1,0,0,0
- PRODUCTVERSION 0,0,2,0
+ PRODUCTVERSION 0,0,3,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -83,7 +83,7 @@ BEGIN
             VALUE "LegalCopyright", "(c) 2024 Danijel Durakovic"
             VALUE "OriginalFilename", "kiwi.exe"
             VALUE "ProductName", "kiwi"
-            VALUE "ProductVersion", "0.0.2.0"
+            VALUE "ProductVersion", "0.0.3.0"
         END
     END
     BLOCK "VarFileInfo"

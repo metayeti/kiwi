@@ -63,17 +63,26 @@ kiwi::FrmMain::StatusBar::StatusBar(wxWindow* parent, long style)
 : wxStatusBar(parent, wxID_ANY, style, "kiwi statusbar")
 {
 	int widths[Field_Max];
-	widths[Field_Text] = -1; // growable
-	widths[Field_Zoom] = 70;
+	widths[Field_Info] = -1; // growable
+	widths[Field_CursorCoordinates] = 40;
+	widths[Field_SelectedCoordinates] = 40;
+	widths[Field_Zoom] = FromDIP(100);
+	widths[Field_ActiveMode] = FromDIP(40);
 
 	SetFieldsCount(Field_Max);
 	SetStatusWidths(Field_Max, widths);
+	this->SetStatusText("Ready", 0);
+	this->SetStatusText("0, 0", 1);
+	this->SetStatusText("5, 2", 2);
+	//this->SetStatusText("i", 4);
 
 	cmbZoomLevel = new wxComboBox(this, wxID_ANY, wxEmptyString);
 	cmbZoomLevel->Append(wxArrayString{ "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%" });
 	cmbZoomLevel->Select(3);
+	cmbZoomLevel->SetCanFocus(false);
 
-	SetMinHeight(cmbZoomLevel->GetMinHeight());
+	//SetMinHeight(cmbZoomLevel->GetMinHeight()); // TODO use this on windows?
+	this->SetMinHeight(FromDIP(26));
 
 	Bind(wxEVT_SIZE, &FrmMain::StatusBar::OnSize, this);
 }
@@ -283,6 +292,28 @@ void kiwi::FrmMain::InitializeGlobalMenu()
 	auto& menuEdit = menuBar.menuEdit;
 	menuBar.root->Append((menuEdit.root = new wxMenu()), "&Edit");
 	{
+		auto& menuUndo = menuEdit.members.menuUndo;
+		menuUndo = new wxMenuItem(menuEdit.root, wxID_ANY, "&Undo\tCtrl+Z");
+		menuEdit.root->Append(menuUndo);
+
+		auto& menuRedo = menuEdit.members.menuRedo;
+		menuRedo = new wxMenuItem(menuEdit.root, wxID_ANY, "&Redo\tCtrl+Y");
+		menuEdit.root->Append(menuRedo);
+
+		menuEdit.root->AppendSeparator();
+
+
+		auto& menuCut = menuEdit.members.menuCut;
+		menuCut = new wxMenuItem(menuEdit.root, wxID_ANY, "&Cut\tCtrl+X");
+		menuEdit.root->Append(menuCut);
+
+		auto& menuCopy = menuEdit.members.menuCopy;
+		menuCopy = new wxMenuItem(menuEdit.root, wxID_ANY, "&Copy\tCtrl+C");
+		menuEdit.root->Append(menuCopy);
+
+		auto& menuPaste = menuEdit.members.menuPaste;
+		menuPaste = new wxMenuItem(menuEdit.root, wxID_ANY, "&Paste\tCtrl+V");
+		menuEdit.root->Append(menuPaste);
 	}
 
 	// -- View --

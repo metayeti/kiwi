@@ -52,9 +52,12 @@ namespace kiwi
 
 			enum
 			{
-				Field_Text,
+				Field_Info,
+				Field_CursorCoordinates,
+				Field_SelectedCoordinates,
 				Field_Zoom,
-				Field_Max
+				Field_Max,
+				Field_ActiveMode
 			};
 
 			void OnSize(wxSizeEvent& e);
@@ -109,6 +112,14 @@ namespace kiwi
 			struct MenuEdit
 			{
 				wxMenu* root;
+				struct Members
+				{
+					wxMenuItem* menuUndo;
+					wxMenuItem* menuRedo;
+					wxMenuItem* menuCut;
+					wxMenuItem* menuCopy;
+					wxMenuItem* menuPaste;
+				} members;
 			} menuEdit;
 
 			// -- View --

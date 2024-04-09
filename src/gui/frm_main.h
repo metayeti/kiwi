@@ -56,8 +56,8 @@ namespace kiwi
 				Field_CursorCoordinates,
 				Field_SelectedCoordinates,
 				Field_Zoom,
-				Field_Max,
-				Field_ActiveMode
+				Field_ActiveMode,
+				Field_Max
 			};
 
 			void OnSize(wxSizeEvent& e);

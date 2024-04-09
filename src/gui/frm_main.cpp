@@ -66,7 +66,7 @@ kiwi::FrmMain::StatusBar::StatusBar(wxWindow* parent, long style)
 	widths[Field_Info] = -1; // growable
 	widths[Field_CursorCoordinates] = 40;
 	widths[Field_SelectedCoordinates] = 40;
-	widths[Field_Zoom] = FromDIP(100);
+	widths[Field_Zoom] = FromDIP(80);
 	widths[Field_ActiveMode] = FromDIP(40);
 
 	SetFieldsCount(Field_Max);
@@ -74,15 +74,18 @@ kiwi::FrmMain::StatusBar::StatusBar(wxWindow* parent, long style)
 	this->SetStatusText("Ready", 0);
 	this->SetStatusText("0, 0", 1);
 	this->SetStatusText("5, 2", 2);
-	//this->SetStatusText("i", 4);
 
 	cmbZoomLevel = new wxComboBox(this, wxID_ANY, wxEmptyString);
 	cmbZoomLevel->Append(wxArrayString{ "25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%" });
 	cmbZoomLevel->Select(3);
 	cmbZoomLevel->SetCanFocus(false);
 
-	//SetMinHeight(cmbZoomLevel->GetMinHeight()); // TODO use this on windows?
+#if defined(KIWI_SYSTEM_WINDOWS)
+	// seems to work on windows 10 (TODO test on win11)
+	SetMinHeight(cmbZoomLevel->GetMinHeight());
+#elif defined(KIWI_SYSTEM_LINUX)
 	this->SetMinHeight(FromDIP(26));
+#endif
 
 	Bind(wxEVT_SIZE, &FrmMain::StatusBar::OnSize, this);
 }

@@ -15,7 +15,7 @@ libx11-dev
 ```
 
 
-NOTE: To generate compile_commands.json for clangd, add `-c` to build command:
+**NOTE (for developers only):** To generate compile_commands.json for clangd, add `-c` to build command:
 
 `./build.sh debug -c` or `./build.sh release -c`
 

@@ -51,7 +51,7 @@ namespace kiwi
 		// indicates whether the map is a staggered type
 		bool staggered = false;
 
-	public:
+	public: 
 		T_LayerList layers;
 		T_PropertyMap properties;
 
@@ -83,7 +83,7 @@ namespace kiwi
 		 *
 		 * @param name New layer name.
 		 */
-		void SetName(std::string name);
+		void SetName(std::string const& name);
 
 		/**
 		 * Resize the map.
@@ -114,7 +114,7 @@ namespace kiwi
 		void LowerLayer(size_t index);
 
 		/**
-		 * Move a layer to specified index in-place, if possible.
+		 * Move a layer to specified level in-place, if possible.
 		 *
 		 * 
 		 * @param index The index of the layer to move.
@@ -136,6 +136,11 @@ namespace kiwi
 		//
 		////////////////////////////////////////////////////////////////////////
 
+		/**
+		 * Serializes map data to bytes.
+		 * 
+		 * @param bytes Bytestream output.
+		 */
 		virtual void SerializeBytes(void* bytes) = 0;
 	};
 }

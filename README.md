@@ -19,7 +19,9 @@ This is a free and open source, cross-platform, general-purpose 2D map editor in
 - Comes with a custom binary map format. Also offers a JSON-formatted export.
 - Map importers for C++ and JavaScript.
 - Designed for portability - kiwi consists of one single executable which you can drop into any project. When first launched, it creates a local configuration ini file. The idea is that you can keep the level editor and its local configuration with a grand total of 2 files. The idea behind this approach is that inside your game project the editor exists preconfigured for your particular development environment and this way you don't ever have to deal with any cross-project annoyances; kiwi has no installer, the executable is all you need.
-- This program offers *some* advanced features. This project does not intend to compete or catch up with other editors. The aim of this project is to provide a minimalistic yet powerful featureset built around a transparent and intuitive workflow.
+- This program offers *some* advanced features. This project does not intend to compete or catch up with other map editors. Basically - I built this tool specifically for my own specific needs - these may or may not align with yours. The aim of this project is to provide a minimalistic, powerful featureset built for an intuitive map creation workflow.
+
+![screenshot](/dev/screenshow.png?raw=true)
 
 ## Installation
 
@@ -27,7 +29,9 @@ kiwi is a portable program. See [releases](releases/) for binary distributions f
 
 ## Contribution
 
-This project is **not** currently open for contributions. Please note that unless the PR is of exceptional quality or resolves some type of critical bug it will most likely be turned down so be forewarned before you attempt to contribute. If you absolutely need additional features then please consider forking the project.
+This project is **not** currently open for contributions. Please note that unless the PR is of exceptional quality or resolves some type of critical bug it will very likely be turned down so be forewarned before you attempt to contribute (and waste energy needlessly). If you absolutely require additional features and cannot possibly live without them, then please consider forking this project instead. If you do happen to find a critical bug and have fixed it, then please by do all means issue a PR, but dealing with feature requests and implementation PRs is simply too much work for me to keep up with and I'd rather keep this project a pet project than dedicate too much time to it. This project is free to do what you wish with - as long as you adhere to the GPL3 terms - this repository is simply the main version which I personally use for my own development purposes, but you can go wild in yours if that's your desire.
+
+tldr; This project is open source, but not open for contributions (unless you fix something extremely broken).
 
 ## Credits
 

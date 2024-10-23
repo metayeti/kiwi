@@ -13,52 +13,58 @@
 ///
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
-///  orthogonal_map.h
+///  hexagonal_map.h
 ///  ---
-///  Orthogonal map header.
+///  Hexagonal map header.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef KIWI_ORTHOGONAL_MAP_H_
-#define KIWI_ORTHOGONAL_MAP_H_
+#ifndef KIWI_ISOMETRIC_MAP_H_
+#define KIWI_ISOMETRIC_MAP_H_
 
 #include "abstract_map.h"
 
 namespace kiwi
 {
-	class OrthogonalMap : public AbstractMap
+	class IsometricMap : public AbstractMap
 	{
 	public:
-		/**
-		 * OrthogonalMap constructor.
-		 */
-		OrthogonalMap();
+
+		enum class Subtype : char
+		{
+			STAGGERED,
+			DIAMOND
+		} subtype;
 
 		/**
-		 * OrthogonalMap destructor.
+		 * IsometricMap constructor.
 		 */
-		~OrthogonalMap();
+		IsometricMap();
+
+		/**
+		 * IsometricMap destructor.
+		 */
+		~IsometricMap();
 
 		/**
 		 * Resize the map.
 		 *
 		 * @param width New map width.
 		 * @param height New map height.
-		 * 
+		 *
 		 * @override
 		 */
 		void Resize(size_t width, size_t height);
 
 		/**
 		 * Serializes map data to bytes.
-		 * 
+		 *
 		 * @param bytes Bytestream output.
 		 * 
 		 * @override
 		 */
 		virtual void SerializeBytes(void* bytes);
-
 	};
 }
 
-#endif // KIWI_ORTHOGONAL_MAP_H_
+#endif // KIWI_ISOMETRIC_MAP_H_

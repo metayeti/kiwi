@@ -28,7 +28,7 @@ namespace kiwi::Util
 	 * Split a string.
 	 * 
 	 * @param str Input string.
-	 * @param delimited Split delimiter.
+	 * @param delimiter Split delimiter.
 	 * 
 	 * @return The split result.
 	 */
@@ -74,14 +74,14 @@ namespace kiwi::Util
 	 * 
 	 * @param filename Input filename.
 	 * 
-	 * @return Returns if filename exists.
+	 * @returns Returns if filename exists.
 	 */
 	bool FileExists(const std::string& filename);
 
 	/**
 	 * Splits an XPM resource into several bitmaps of varying sizes.
 	 *
-	 * @return A bitmap bundle.
+	 * @returns A bitmap bundle.
 	 */
 	wxBitmapBundle XPMToBitmapBundle(const char* const* data, int baseWidth, int baseHeight, wxImageResizeQuality quality = wxIMAGE_QUALITY_NORMAL);
 }

@@ -34,7 +34,7 @@ std::string const& kiwi::AbstractMap::GetName() const
 	return name;
 }
 
-void kiwi::AbstractMap::SetName(std::string name)
+void kiwi::AbstractMap::SetName(std::string const& name)
 {
 	this->name = name;
 }

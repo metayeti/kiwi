@@ -22,6 +22,7 @@
 #ifndef KIWI_H_
 #define KIWI_H_
 
+// determine host OS
 #if defined(_WIN32) || defined(__CYGWIN__)
 	#define KIWI_SYSTEM_WINDOWS
 #elif defined(__linux__)
@@ -30,6 +31,7 @@
 	#define KIWI_SYSTEM_MACOS
 #endif
 
+// determine debug build
 #if defined(DEBUG) || defined(_DEBUG)
 	#define KIWI_DEBUG_BUILD
 #endif
@@ -45,14 +47,15 @@
 	#pragma warning(disable: 26439)
 #endif
 
-//#include "wx/wxprec.h"
-//#ifndef WX_PRECOMP
+#include "wx/wxprec.h"
+#ifndef WX_PRECOMP
 	#include "wx/wx.h"
-	#include "wx/spinctrl.h"
-	#include "wx/aui/aui.h"
-//#endif
+#endif
+// additional controls
+#include "wx/spinctrl.h"
+#include "wx/aui/aui.h"
 
-// ~~~ VLD ~~~ uncomment to enable leak detection
+// ( VLD ) uncomment following line to enable leak detection
 //#include "vld.h"
 
 #endif // KIWI_H_

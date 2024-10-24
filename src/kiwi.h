@@ -45,11 +45,12 @@
 	#pragma warning(disable: 26439)
 #endif
 
-#include "wx/wxprec.h"
-#ifndef WX_PRECOMP
+//#include "wx/wxprec.h"
+//#ifndef WX_PRECOMP
 	#include "wx/wx.h"
 	#include "wx/spinctrl.h"
-#endif
+	#include "wx/aui/aui.h"
+//#endif
 
 // ~~~ VLD ~~~ uncomment to enable leak detection
 //#include "vld.h"

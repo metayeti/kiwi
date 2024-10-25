@@ -203,7 +203,7 @@ void kiwi::FrmMain::OnWindowClose(wxCloseEvent& e)
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void kiwi::FrmMain::InitializeGlobalMenu()
+void kiwi::FrmMain::CreateGlobalMenu()
 {
 	SetMenuBar(menuBar.root = new wxMenuBar());
 
@@ -405,7 +405,50 @@ void kiwi::FrmMain::InitializeGlobalMenu()
 	}
 }
 
-void kiwi::FrmMain::InitializeStatusBar()
+void kiwi::FrmMain::CreateToolBar()
+{
+}
+
+void kiwi::FrmMain::CreateInterface()
+{
+	/*
+	wxTextCtrl* text1 = new wxTextCtrl(this, -1, "Pane 1 - sample text", wxDefaultPosition, wxSize(200, 150), wxNO_BORDER | wxTE_MULTILINE);
+	wxTextCtrl* text2 = new wxTextCtrl(this, -1, "Pane 2 - sample text", wxDefaultPosition, wxSize(200, 150), wxNO_BORDER | wxTE_MULTILINE);
+	wxTextCtrl* text3 = new wxTextCtrl(this, -1, "Pane 3 - sample text", wxDefaultPosition, wxSize(200, 150), wxNO_BORDER | wxTE_MULTILINE);
+
+	auiManager.AddPane(text1, wxLEFT, wxT("Pane Number One"));
+	auiManager.AddPane(text2, wxBOTTOM, wxT("Pane Number Two"));
+	auiManager.AddPane(text3, wxCENTER);
+	*
+	* 
+	*/
+
+
+	wxPanel* panelEditor = new wxPanel(this, wxID_ANY);
+	wxPanel* panelSide = new wxPanel(this, wxID_ANY);
+
+	auiManager.AddPane(
+		panelEditor,
+		wxAuiPaneInfo()
+			.Name("Editor")
+			.Caption("Editor")
+			.Left()
+			.Centre()
+	);
+	auiManager.AddPane(
+		panelSide,
+		wxAuiPaneInfo()
+			.Name("Side")
+			.Caption("Sidepanel")
+			.BestSize(400, 400)
+			.Right()
+	);
+
+	// tell the manager to "commit" all the changes just made
+	auiManager.Update();
+}
+
+void kiwi::FrmMain::CreateStatusBar()
 {
 	statusBar = new FrmMain::StatusBar(this);
 	SetStatusBar(statusBar);
@@ -415,6 +458,9 @@ void kiwi::FrmMain::InitializeStatusBar()
 kiwi::FrmMain::FrmMain(Application* application)
 : wxFrame(nullptr, wxID_ANY, MAIN_WINDOW_TITLE), application(application)
 {
+	// tell the AUI manager to manage this window
+	auiManager.SetManagedWindow(this);
+
 	// frame setup
 	SetMinSize(FromDIP(wxSize(200, 200))); // set minimum frame size
 
@@ -428,8 +474,10 @@ kiwi::FrmMain::FrmMain(Application* application)
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
 
 	// initialize components
-	InitializeGlobalMenu();
-	InitializeStatusBar();
+	CreateGlobalMenu();
+	CreateToolBar();
+	CreateInterface();
+	CreateStatusBar();
 
 	// bind window events
 	Bind(wxEVT_MOVE, &FrmMain::OnWindowMove, this);

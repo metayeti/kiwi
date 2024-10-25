@@ -37,15 +37,13 @@ See the [kiwi User Manual](manual/) for help.
 
 ## Contribution
 
-This project is **not** currently open for contributions. Please note that unless the PR is of exceptional quality or resolves some type of critical bug, it will most likely be turned down - be forewarned before you attempt to contribute and potentially waste energy needlessly. If you absolutely require additional features and cannot possibly live without them, then please consider forking this project instead. (If you do happen to find a critical bug and have fixed it, then please do by all means issue a PR; dealing with feature requests and implementation PRs on the other hand is simply too much work for me to keep up with and I'd rather keep this project as a pet project than dedicate much time to it. This project is free to do what you wish with, as long as you adhere to the terms of the GPL3 license. This repository is the main version for this project, which I personally use for my own development purposes - you can of course go wild in your own versions.)
-
-tldr; This project is open source, but not open for contributions (unless you fix something of critical nature).
+This project is **not** currently open for contributions. Please note that unless the PR is of exceptional quality or resolves some type of critical bug, it will most likely be turned down - be forewarned before you attempt to contribute and potentially waste energy needlessly. If you absolutely require additional features and cannot possibly live without them, then please consider forking this project instead.
 
 ## Thanks
 
 - [wxWidgets](https://www.wxwidgets.org/) - GUI library
 
-# License
+## License
 
 Copyright &copy; 2024 Danijel Durakovic
 

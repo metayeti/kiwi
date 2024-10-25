@@ -182,6 +182,8 @@ namespace kiwi
 		//
 		////////////////////////////////////////////////////////////////////////
 		
+		wxAuiManager auiManager;
+
 		StatusBar* statusBar;
 
 		////////////////////////////////////////////////////////////////////////
@@ -228,8 +230,10 @@ namespace kiwi
 		//
 		////////////////////////////////////////////////////////////////////////
 
-		void InitializeGlobalMenu();
-		void InitializeStatusBar();
+		void CreateGlobalMenu();
+		void CreateToolBar();
+		void CreateInterface();
+		void CreateStatusBar();
 
 	public:
 		FrmMain(Application* application);

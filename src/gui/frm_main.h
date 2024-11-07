@@ -231,8 +231,10 @@ namespace kiwi
 		////////////////////////////////////////////////////////////////////////
 
 		void CreateGlobalMenu();
-		void CreateToolBar();
+		void CreateKiwiToolBar();
 		void CreateInterface();
+			//void CreateEditorPane();
+			//void CrateSidePanelPane();
 		void CreateStatusBar();
 
 	public:

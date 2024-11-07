@@ -405,8 +405,20 @@ void kiwi::FrmMain::CreateGlobalMenu()
 	}
 }
 
-void kiwi::FrmMain::CreateToolBar()
+void kiwi::FrmMain::CreateKiwiToolBar()
 {
+	//wxToolBar* toolBar = CreateToolBar(wxTB_NODIVIDER | wxTB_FLAT);
+	wxToolBar* toolBar = CreateToolBar(wxTB_FLAT);
+	toolBar->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENU));
+	toolBar->SetSize(0, 0, 0, 16);
+	toolBar->AddTool(1, "Test", wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)));
+	toolBar->AddTool(2, "Test", wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)));
+	toolBar->AddTool(3, "Test", wxBitmapBundle::FromSVG(SVG_ICON_OPEN, wxSize(16, 16)));
+	toolBar->AddTool(4, "Test", wxBitmapBundle::FromSVG(SVG_ICON_OPEN, wxSize(16, 16)));
+	toolBar->AddSeparator();
+	toolBar->AddTool(6, "Test", wxBitmapBundle::FromSVG(SVG_ICON_SAVE, wxSize(16, 16)));
+	toolBar->AddTool(7, "Test", wxBitmapBundle::FromSVG(SVG_ICON_SAVE, wxSize(16, 16)));
+	toolBar->Realize();
 }
 
 void kiwi::FrmMain::CreateInterface()
@@ -475,7 +487,7 @@ kiwi::FrmMain::FrmMain(Application* application)
 
 	// initialize components
 	CreateGlobalMenu();
-	CreateToolBar();
+	CreateKiwiToolBar();
 	CreateInterface();
 	CreateStatusBar();
 

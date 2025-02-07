@@ -14,19 +14,17 @@
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
 ///  util.cpp
-///  ---
-///  Utility functions implementation.
 ///
 ////////////////////////////////////////////////////////////////////////////////
+
+#include "kiwi.h"
+#include "util.h"
 
 #include <string>
 #include <vector>
 #include <fstream>
 #include <algorithm>
 #include <cctype>
-
-#include "kiwi.h"
-#include "util.h"
 
 std::vector<std::string> kiwi::Util::SplitStr(std::string str, std::string const& delimiter)
 {

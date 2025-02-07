@@ -14,20 +14,17 @@
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
 ///  config.cpp
-///  ---
-///  Config implementation. Deals with persistent storage via the ini config
-///  file.
 ///
 ////////////////////////////////////////////////////////////////////////////////
-
-#include <utility>
-#include <fstream>
 
 #include "kiwi.h"
 #include "util.h"
 #include "config.h"
 #include "const.h"
 #include "res/ini_resources.h"
+
+#include <utility>
+#include <fstream>
 
 void kiwi::Config::LoadDefaults()
 {

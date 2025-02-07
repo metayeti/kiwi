@@ -14,13 +14,13 @@
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
 ///  abstract_layer.h
-///  ---
-///  Abstract layer header.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef KIWI_ABSTRACT_LAYER_H_
 #define KIWI_ABSTRACT_LAYER_H_
+
+#include <string>
 
 namespace kiwi
 {

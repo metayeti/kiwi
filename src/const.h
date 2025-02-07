@@ -14,13 +14,14 @@
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
 ///  const.h
-///  ---
-///  Application-wide constants.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef KIWI_CONST_H_
 #define KIWI_CONST_H_
+
+#include <string>
+#include <cstdint>
 
 namespace kiwi
 {

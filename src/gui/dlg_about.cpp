@@ -14,9 +14,6 @@
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
 ///  dlg_about.cpp
-///  ---
-///  About dialog implementation. Also serves as a sort of quick rundown on
-///  dialog coding stye in this codebase.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -34,9 +31,8 @@ void kiwi::DlgAbout::OnDoubleClickBmpIcon(wxMouseEvent& e)
 	///if (++(this->c) <3) return;
 	///this->c = 0;
 
-	//
-	// ,.-~` easter egg `~-.,
-	//
+	// easter egg
+	// double-clicking on the icon will open the hidden game
 
 	// open the game window
 	auto dlgGame = new DlgGame(this);

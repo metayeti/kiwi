@@ -14,8 +14,6 @@
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
 ///  dlg_game.h
-///  ---
-///  Game dialog header.
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -25,6 +23,7 @@
 namespace kiwi
 {
 
+	/*
 	enum class T_ItemType : char
 	{
 		WEAPON_1H,
@@ -114,13 +113,11 @@ namespace kiwi
 		//using T_MapType = std::unique_ptr<int>;
 		//using T_ItemDB = std::vector<Item>;
 
-/*
-		T_MapType mapOverworld;
-		T_MapType mapCatacombs;
-		T_MapType mapIcaria;
-		T_MapType mapUnderworld;
-		T_MapType mapMorlona;
-		*/
+		//T_MapType mapOverworld;
+		//T_MapType mapCatacombs;
+		//T_MapType mapIcaria;
+		//T_MapType mapUnderworld;
+		//T_MapType mapMorlona;
 
 		void CreateItemDB();
 		void CreateEntityDB();
@@ -129,18 +126,10 @@ namespace kiwi
 		World();
 		~World();
 	};
+	*/
 
 	class DlgGame : public wxDialog
 	{
-	private:
-
-
-
-		/**
-		 * Creates a brand new game. Resets the world and everything in it.
-		 */
-		void CreateNewGame();
-
 	public:
 		DlgGame(wxWindow* parent);
 	};

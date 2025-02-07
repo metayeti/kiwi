@@ -14,19 +14,17 @@
 /// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ///
 ///  dlg_game.h
-///  ---
-///  Game dialog implementation.
 ///
 ////////////////////////////////////////////////////////////////////////////////
-
-#include <string>
-#include <vector>
 
 #include "../kiwi.h"
 #include "dlg_game.h"
 
+#include <string>
+#include <vector>
+
 kiwi::DlgGame::DlgGame(wxWindow* parent)
-: wxDialog(parent, wxID_ANY, "smolRPG", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
+: wxDialog(parent, wxID_ANY, "game", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
 
 }

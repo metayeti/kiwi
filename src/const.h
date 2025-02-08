@@ -33,7 +33,7 @@ namespace kiwi
 	const char* const KIWI_INI_FILENAME = "kiwi.ini";
 
 	// URLs
-	const char* const URL_GITHUB_MANUAL = "https://github.com/metayeti/kiwi/tree/main/manual/";
+	const char* const URL_GITHUB_MANUAL = "https://github.com/metayeti/kiwi/wiki";
 	const char* const URL_GITHUB_RELEASES = "https://github.com/metayeti/kiwi/releases";
 
 	// main window constants
@@ -93,6 +93,9 @@ namespace kiwi
 	const char* const QUICKHELP_ACTION_EDIT_CUT = "Cut selection";
 	const char* const QUICKHELP_ACTION_EDIT_COPY = "Copy selection";
 	const char* const QUICKHELP_ACTION_EDIT_PASTE = "Paste from clipboard";
+	const char* const QUICKHELP_ACTION_EDIT_SELECT_VIEW = "Select region currently visible";
+	const char* const QUICKHELP_ACTION_EDIT_SELECT_ALL = "Select the entire map";
+	const char* const QUICKHELP_ACTION_EDIT_SELECT_NONE = "Cancel current selection";
 	const char* const QUICKHELP_ACTION_EDIT_DELETE = "Delete selection";
 
 	const char* const QUICKHELP_ACTION_LAYER_CREATE_NEW = "Create a new layer";

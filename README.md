@@ -15,7 +15,6 @@ This project is a work in progress and is not currently in any type of functiona
 This is a free and open source, cross-platform, general-purpose 2D map editor intended for 2D game development. Its main features are:
 
 - Fast and lightweight, with as little cruft as humanly possible.
-- Scales well. Your enormous maps are safe here.
 - Comes with a custom binary map format. Also offers a JSON-formatted export.
 - Map importers for C++ and JavaScript.
 - Designed for portability - kiwi consists of one single executable which you can drop into any project. When first launched, it creates a local configuration ini file - and that's your entire editing environment right there. The idea is that you can keep the level editor and its local configuration with a grand total of 2 files and that the editor exists preconfigured for your particular development environment within your game project. This way you don't ever have to deal with any cross-project annoyances; kiwi has no installer, the executable is all you need.
@@ -33,11 +32,11 @@ kiwi is a portable program. See [releases](releases/) for binary distributions f
 
 ## Help
 
-See the [kiwi User Manual](manual/) for help.
+See the [kiwi wiki](https://github.com/metayeti/kiwi/wiki) for help.
 
 ## Contribution
 
-This project is **not** currently open for contributions. Please note that unless the PR is of exceptional quality or resolves some type of critical bug, it will most likely be turned down - be forewarned before you attempt to contribute and potentially waste energy needlessly. If you absolutely require additional features and cannot possibly live without them, then please consider forking this project instead.
+This project is not currently open for contributions.
 
 ## Thanks
 

@@ -294,27 +294,56 @@ void kiwi::FrmMain::CreateGlobalMenu()
 	menuBar.root->Append((menuEdit.root = new wxMenu()), "&Edit");
 	{
 		auto& menuUndo = menuEdit.members.menuUndo;
-		menuUndo = new wxMenuItem(menuEdit.root, wxID_ANY, "&Undo\tCtrl+Z");
+		menuUndo = new wxMenuItem(menuEdit.root, wxID_ANY, "&Undo\tCtrl+Z", QUICKHELP_ACTION_EDIT_UNDO);
 		menuEdit.root->Append(menuUndo);
 
 		auto& menuRedo = menuEdit.members.menuRedo;
-		menuRedo = new wxMenuItem(menuEdit.root, wxID_ANY, "&Redo\tCtrl+Y");
+		menuRedo = new wxMenuItem(menuEdit.root, wxID_ANY, "&Redo\tCtrl+Y", QUICKHELP_ACTION_EDIT_REDO);
 		menuEdit.root->Append(menuRedo);
 
 		menuEdit.root->AppendSeparator();
 
-
 		auto& menuCut = menuEdit.members.menuCut;
-		menuCut = new wxMenuItem(menuEdit.root, wxID_ANY, "&Cut\tCtrl+X");
+		menuCut = new wxMenuItem(menuEdit.root, wxID_ANY, "&Cut\tCtrl+X", QUICKHELP_ACTION_EDIT_CUT);
 		menuEdit.root->Append(menuCut);
 
 		auto& menuCopy = menuEdit.members.menuCopy;
-		menuCopy = new wxMenuItem(menuEdit.root, wxID_ANY, "&Copy\tCtrl+C");
+		menuCopy = new wxMenuItem(menuEdit.root, wxID_ANY, "&Copy\tCtrl+C", QUICKHELP_ACTION_EDIT_COPY);
 		menuEdit.root->Append(menuCopy);
 
 		auto& menuPaste = menuEdit.members.menuPaste;
-		menuPaste = new wxMenuItem(menuEdit.root, wxID_ANY, "&Paste\tCtrl+V");
+		menuPaste = new wxMenuItem(menuEdit.root, wxID_ANY, "&Paste\tCtrl+V", QUICKHELP_ACTION_EDIT_PASTE);
 		menuEdit.root->Append(menuPaste);
+
+		menuEdit.root->AppendSeparator();
+		
+		
+		auto& menuSelectView = menuEdit.members.menuSelectView;
+		menuSelectView = new wxMenuItem(menuEdit.root, wxID_ANY, "Select &View\tCtrl+A", QUICKHELP_ACTION_EDIT_SELECT_VIEW);
+		menuEdit.root->Append(menuSelectView);
+
+		
+		auto& menuSelectAll = menuEdit.members.menuSelectAll;
+		menuSelectAll = new wxMenuItem(menuEdit.root, wxID_ANY, "&Select All\tCtrl+Shift+A", QUICKHELP_ACTION_EDIT_SELECT_ALL);
+		menuEdit.root->Append(menuSelectAll);
+
+		//wxMenuItem* menuSelectNone;
+		auto& menuSelectNone = menuEdit.members.menuSelectNone;
+		menuSelectNone = new wxMenuItem(menuEdit.root, wxID_ANY, "Select &None\tEsc", QUICKHELP_ACTION_EDIT_SELECT_NONE);
+		menuEdit.root->Append(menuSelectNone);
+
+		
+		
+		menuEdit.root->AppendSeparator();
+		
+
+		auto& menuDelete = menuEdit.members.menuDelete;
+		menuDelete = new wxMenuItem(menuEdit.root, wxID_ANY, "&Delete\tDel", QUICKHELP_ACTION_EDIT_DELETE);
+		menuEdit.root->Append(menuDelete);
+		
+		
+		
+		//wxMenuItem* menuDelete;
 	}
 
 	// -- View --
@@ -403,20 +432,51 @@ void kiwi::FrmMain::CreateGlobalMenu()
 	}
 }
 
-void kiwi::FrmMain::CreateKiwiToolBar()
+void kiwi::FrmMain::CreateGlobalToolBar()
 {
-	//wxToolBar* toolBar = CreateToolBar(wxTB_NODIVIDER | wxTB_FLAT);
-	wxToolBar* toolBar = CreateToolBar(wxTB_FLAT);
+	wxToolBar* toolBar = CreateToolBar(wxTB_NODIVIDER | wxTB_FLAT);
+	
+	//wxToolBar* toolBar = CreateToolBar(wxTB_FLAT);
 	toolBar->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENU));
-	toolBar->SetSize(0, 0, 0, 16);
-	toolBar->AddTool(1, "Test", wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)));
+	toolBar->SetSize(0, 0, 0, 20);
+	toolBar->AddTool(1, "Test", wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(20, 20)));
+	/*
 	toolBar->AddTool(2, "Test", wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)));
 	toolBar->AddTool(3, "Test", wxBitmapBundle::FromSVG(SVG_ICON_OPEN, wxSize(16, 16)));
 	toolBar->AddTool(4, "Test", wxBitmapBundle::FromSVG(SVG_ICON_OPEN, wxSize(16, 16)));
 	toolBar->AddSeparator();
 	toolBar->AddTool(6, "Test", wxBitmapBundle::FromSVG(SVG_ICON_SAVE, wxSize(16, 16)));
 	toolBar->AddTool(7, "Test", wxBitmapBundle::FromSVG(SVG_ICON_SAVE, wxSize(16, 16)));
+	*/
 	toolBar->Realize();
+	
+
+	/*
+	// Create a new toolbar
+	wxAuiToolBar* toolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxAUI_TB_DEFAULT_STYLE);
+
+	// Add buttons to the toolbar
+	toolBar->AddTool(wxID_NEW, wxT("New"), wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)), wxT("Create a new file"));
+	toolBar->AddTool(wxID_OPEN, wxT("Open"), wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)), wxT("Open an existing file"));
+	toolBar->AddTool(wxID_SAVE, wxT("Save"), wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)), wxT("Save the current file"));
+
+	// Add a separator
+	toolBar->AddSeparator();
+
+	// Add more buttons after the separator
+	toolBar->AddTool(wxID_CUT, wxT("Cut"), wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)), wxT("Cut the selection"));
+	toolBar->AddTool(wxID_COPY, wxT("Copy"), wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)), wxT("Copy the selection"));
+	toolBar->AddTool(wxID_PASTE, wxT("Paste"), wxBitmapBundle::FromSVG(SVG_ICON_NEW, wxSize(16, 16)), wxT("Paste from clipboard"));
+
+	// Realize the toolbar
+	toolBar->Realize();
+
+	// Add the toolbar to the AUI manager
+	auiManager.AddPane(toolBar, wxAuiPaneInfo().Name(wxT("ToolBar")).ToolbarPane().Top());
+
+	// Update the AUI manager
+	auiManager.Update();
+	*/
 }
 
 void kiwi::FrmMain::CreateInterface()
@@ -485,7 +545,7 @@ kiwi::FrmMain::FrmMain(Application* application)
 
 	// initialize components
 	CreateGlobalMenu();
-	CreateKiwiToolBar();
+	CreateGlobalToolBar();
 	CreateInterface();
 	CreateStatusBar();
 

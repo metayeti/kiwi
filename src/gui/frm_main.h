@@ -117,6 +117,10 @@ namespace kiwi
 					wxMenuItem* menuCut;
 					wxMenuItem* menuCopy;
 					wxMenuItem* menuPaste;
+					wxMenuItem* menuSelectView;
+					wxMenuItem* menuSelectAll;
+					wxMenuItem* menuSelectNone;
+					wxMenuItem* menuDelete;
 				} members;
 			} menuEdit;
 
@@ -229,7 +233,7 @@ namespace kiwi
 		////////////////////////////////////////////////////////////////////////
 
 		void CreateGlobalMenu();
-		void CreateKiwiToolBar();
+		void CreateGlobalToolBar();
 		void CreateInterface();
 			//void CreateEditorPane();
 			//void CrateSidePanelPane();

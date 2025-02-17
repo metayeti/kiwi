@@ -49,7 +49,9 @@
 #ifndef WX_PRECOMP
 	#include "wx/wx.h"
 #endif
-// additional controls
+// additional includes
+#include "wx/dcbuffer.h"
+#include "wx/dc.h"
 #include "wx/spinctrl.h"
 #include "wx/aui/aui.h"
 

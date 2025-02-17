@@ -28,9 +28,6 @@
 
 void kiwi::DlgAbout::OnDoubleClickBmpIcon(wxMouseEvent& e)
 {
-	///if (++(this->c) <3) return;
-	///this->c = 0;
-
 	// easter egg
 	// double-clicking on the icon will open the hidden game
 
@@ -93,7 +90,7 @@ kiwi::DlgAbout::DlgAbout(wxWindow* parent)
 			" (debug)"
 #endif
 			"\n\n"
-			"Copyright " + wxString::FromUTF8("\xc2\xa9") + " 2024 Danijel Durakovic\n"
+			"Copyright " + wxString::FromUTF8("\xc2\xa9") + " 2025 Danijel Durakovic\n"
 			"Licensed under the terms of GPLv3"
 		));
 		sizDialogElements->Add( // always expand Add() for visibility

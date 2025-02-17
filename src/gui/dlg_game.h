@@ -130,6 +130,9 @@ namespace kiwi
 
 	class DlgGame : public wxDialog
 	{
+	private:
+		void OnPaint(wxPaintEvent& e);
+
 	public:
 		DlgGame(wxWindow* parent);
 	};

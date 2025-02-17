@@ -28,7 +28,7 @@ kiwi running on Windows 10:
 
 ## Installation
 
-kiwi is a portable program. See [releases](releases/) for binary distributions for Windows. For non-Windows systems you will have to build the program manually (it's not that hard - see [building instructions](BUILDING.md)).
+kiwi is a portable program. See [releases](releases/) for binary distributions for Windows. For non-Windows systems you will have to build the program manually (it's not hard - see [building instructions](BUILDING.md)).
 
 ## Help
 
@@ -44,6 +44,6 @@ This project is not currently open for contributions.
 
 ## License
 
-Copyright &copy; 2024 Danijel Durakovic
+Copyright &copy; 2025 Danijel Durakovic
 
 This project is licensed under the terms of the [GPLv3 license](LICENSE).

@@ -145,9 +145,11 @@ namespace kiwi
 					wxMenuItem* menuCreateNew;
 					wxMenuItem* menuDuplicate;
 					wxMenuItem* menuMerge;
-					wxMenuItem* menuDelete;
+					wxMenuItem* menuRemove;
 					wxMenuItem* menuRaise;
 					wxMenuItem* menuLower;
+					wxMenuItem* menuLock;
+					wxMenuItem* menuUnlock;
 					wxMenuItem* menuLayerProperties;
 				} members;
 			} menuLayer;

@@ -110,8 +110,8 @@ void kiwi::DlgNewMap::OnChoiceHexGridType(wxCommandEvent& e)
 }
 
 kiwi::DlgNewMap::DlgNewMap(wxWindow* parent)
-: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
-//: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
+//: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
+: wxDialog(parent, wxID_ANY, "Create a New Map", wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) //TODO remove, just for testing
 {
 	const int borderSize = FromDIP(GUI_DEFAULT_BORDER_SIZE);
 	const int halfBorderSize = FromDIP(GUI_HALF_BORDER_SIZE);

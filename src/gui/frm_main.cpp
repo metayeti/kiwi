@@ -375,9 +375,9 @@ void kiwi::FrmMain::CreateGlobalMenu()
 		menuMerge = new wxMenuItem(menuLayer.root, wxID_ANY, "&Merge...\tCtrl+Shift+M", QUICKHELP_ACTION_LAYER_MERGE);
 		menuLayer.root->Append(menuMerge);
 
-		auto& menuDelete = menuLayer.members.menuDelete;
-		menuDelete = new wxMenuItem(menuLayer.root, wxID_ANY, "Dele&te", QUICKHELP_ACTION_LAYER_DELETE);
-		menuLayer.root->Append(menuDelete);
+		auto& menuRemove = menuLayer.members.menuRemove;
+		menuRemove = new wxMenuItem(menuLayer.root, wxID_ANY, "Re&move", QUICKHELP_ACTION_LAYER_REMOVE);
+		menuLayer.root->Append(menuRemove);
 
 		menuLayer.root->AppendSeparator();
 
@@ -388,6 +388,16 @@ void kiwi::FrmMain::CreateGlobalMenu()
 		auto& menuLower = menuLayer.members.menuLower;
 		menuLower = new wxMenuItem(menuLayer.root, wxID_ANY, "&Lower\tCtrl+PgDn", QUICKHELP_ACTION_LAYER_LOWER);
 		menuLayer.root->Append(menuLower);
+
+		menuLayer.root->AppendSeparator();
+
+		auto& menuLock = menuLayer.members.menuLock;
+		menuLock = new wxMenuItem(menuLayer.root, wxID_ANY, "Lo&ck", QUICKHELP_ACTION_LAYER_LOCK);
+		menuLayer.root->Append(menuLock);
+
+		auto& menuUnlock = menuLayer.members.menuUnlock;
+		menuUnlock = new wxMenuItem(menuLayer.root, wxID_ANY, "Unloc&k", QUICKHELP_ACTION_LAYER_UNLOCK);
+		menuLayer.root->Append(menuUnlock);
 
 		menuLayer.root->AppendSeparator();
 

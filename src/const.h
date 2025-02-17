@@ -101,9 +101,11 @@ namespace kiwi
 	const char* const QUICKHELP_ACTION_LAYER_CREATE_NEW = "Create a new layer";
 	const char* const QUICKHELP_ACTION_LAYER_DUPLICATE = "Duplicate this layer";
 	const char* const QUICKHELP_ACTION_LAYER_MERGE = "Merge this layer with another";
-	const char* const QUICKHELP_ACTION_LAYER_DELETE = "Delete this layer";
+	const char* const QUICKHELP_ACTION_LAYER_REMOVE = "Remove this layer";
 	const char* const QUICKHELP_ACTION_LAYER_RAISE = "Raise this layer to one level above current";
 	const char* const QUICKHELP_ACTION_LAYER_LOWER = "Lower this layer to one level below current";
+	const char* const QUICKHELP_ACTION_LAYER_LOCK = "Lock this layer, preventing editing";
+	const char* const QUICKHELP_ACTION_LAYER_UNLOCK = "Unlock this layer, allowing editing";
 	const char* const QUICKHELP_ACTION_LAYER_LAYER_PROPERTIES = "Open the layer properties dialog";
 
 	const char* const QUICKHELP_ACTION_TOOLS_SETTINGS = "Open the program settings dialog";

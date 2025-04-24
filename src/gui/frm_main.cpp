@@ -317,33 +317,23 @@ void kiwi::FrmMain::CreateGlobalMenu()
 
 		menuEdit.root->AppendSeparator();
 		
-		
 		auto& menuSelectView = menuEdit.members.menuSelectView;
 		menuSelectView = new wxMenuItem(menuEdit.root, wxID_ANY, "Select &View\tCtrl+A", QUICKHELP_ACTION_EDIT_SELECT_VIEW);
 		menuEdit.root->Append(menuSelectView);
 
-		
 		auto& menuSelectAll = menuEdit.members.menuSelectAll;
 		menuSelectAll = new wxMenuItem(menuEdit.root, wxID_ANY, "&Select All\tCtrl+Shift+A", QUICKHELP_ACTION_EDIT_SELECT_ALL);
 		menuEdit.root->Append(menuSelectAll);
 
-		//wxMenuItem* menuSelectNone;
 		auto& menuSelectNone = menuEdit.members.menuSelectNone;
 		menuSelectNone = new wxMenuItem(menuEdit.root, wxID_ANY, "Select &None\tEsc", QUICKHELP_ACTION_EDIT_SELECT_NONE);
 		menuEdit.root->Append(menuSelectNone);
-
-		
 		
 		menuEdit.root->AppendSeparator();
-		
 
 		auto& menuDelete = menuEdit.members.menuDelete;
 		menuDelete = new wxMenuItem(menuEdit.root, wxID_ANY, "&Delete\tDel", QUICKHELP_ACTION_EDIT_DELETE);
 		menuEdit.root->Append(menuDelete);
-		
-		
-		
-		//wxMenuItem* menuDelete;
 	}
 
 	// -- View --
@@ -392,7 +382,7 @@ void kiwi::FrmMain::CreateGlobalMenu()
 		menuLayer.root->AppendSeparator();
 
 		auto& menuLock = menuLayer.members.menuLock;
-		menuLock = new wxMenuItem(menuLayer.root, wxID_ANY, "Lo&ck", QUICKHELP_ACTION_LAYER_LOCK);
+		menuLock = new wxMenuItem(menuLayer.root, wxID_ANY, "Lo&ck\tCtrl+Home", QUICKHELP_ACTION_LAYER_LOCK);
 		menuLayer.root->Append(menuLock);
 
 		auto& menuUnlock = menuLayer.members.menuUnlock;

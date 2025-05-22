@@ -481,41 +481,65 @@ void kiwi::FrmMain::CreateGlobalToolBar()
 
 void kiwi::FrmMain::CreateInterface()
 {
-	/*
-	wxTextCtrl* text1 = new wxTextCtrl(this, -1, "Pane 1 - sample text", wxDefaultPosition, wxSize(200, 150), wxNO_BORDER | wxTE_MULTILINE);
-	wxTextCtrl* text2 = new wxTextCtrl(this, -1, "Pane 2 - sample text", wxDefaultPosition, wxSize(200, 150), wxNO_BORDER | wxTE_MULTILINE);
-	wxTextCtrl* text3 = new wxTextCtrl(this, -1, "Pane 3 - sample text", wxDefaultPosition, wxSize(200, 150), wxNO_BORDER | wxTE_MULTILINE);
 
-	auiManager.AddPane(text1, wxLEFT, wxT("Pane Number One"));
-	auiManager.AddPane(text2, wxBOTTOM, wxT("Pane Number Two"));
-	auiManager.AddPane(text3, wxCENTER);
-	*
-	* 
-	*/
+    // Editor panel with tabs and split support
+    wxPanel* panelEditor = new wxPanel(this, wxID_ANY);
+    wxBoxSizer* editorSizer = new wxBoxSizer(wxVERTICAL);
+    wxAuiNotebook* editorNotebook = new wxAuiNotebook(panelEditor, wxID_ANY,
+        wxDefaultPosition, wxDefaultSize,
+        wxAUI_NB_TOP | wxAUI_NB_TAB_MOVE | wxAUI_NB_TAB_SPLIT | wxAUI_NB_SCROLL_BUTTONS |
+		wxAUI_NB_BOTTOM
+	);
 
+    // Example editor tabs (replace with your actual editor views)
+    editorNotebook->AddPage(new wxPanel(editorNotebook), "Map View");
+    editorNotebook->AddPage(new wxPanel(editorNotebook), "Tileset");
+    editorNotebook->AddPage(new wxPanel(editorNotebook), "Script");
 
-	wxPanel* panelEditor = new wxPanel(this, wxID_ANY);
-	wxPanel* panelSide = new wxPanel(this, wxID_ANY);
+    editorSizer->Add(editorNotebook, 1, wxEXPAND);
+    panelEditor->SetSizer(editorSizer);
 
-	auiManager.AddPane(
-		panelEditor,
-		wxAuiPaneInfo()
-			.Name("Editor")
-			.Caption("Editor")
+    // Side panel with utility tabs and split support
+    wxPanel* panelSide = new wxPanel(this, wxID_ANY);
+    wxBoxSizer* sideSizer = new wxBoxSizer(wxVERTICAL);
+    wxAuiNotebook* sideNotebook = new wxAuiNotebook(panelSide, wxID_ANY,
+        wxDefaultPosition, wxDefaultSize,
+        wxAUI_NB_TOP | wxAUI_NB_TAB_MOVE | wxAUI_NB_TAB_SPLIT | wxAUI_NB_SCROLL_BUTTONS |
+		wxAUI_NB_BOTTOM
+	);
+
+    // Utility tabs
+    sideNotebook->AddPage(new wxPanel(sideNotebook), "Minimap");
+    sideNotebook->AddPage(new wxPanel(sideNotebook), "Property Window");
+    sideNotebook->AddPage(new wxPanel(sideNotebook), "Object View");
+    sideNotebook->AddPage(new wxPanel(sideNotebook), "Layers");
+
+    sideSizer->Add(sideNotebook, 1, wxEXPAND);
+    panelSide->SetSizer(sideSizer);
+
+    // Add panels to the AUI manager
+    auiManager.AddPane(
+        panelEditor,
+        wxAuiPaneInfo()
+            .Name("Editor")
+            //.Caption("Editor")
+            .CaptionVisible(false)
 			.Left()
-			.Centre()
-	);
-	auiManager.AddPane(
-		panelSide,
-		wxAuiPaneInfo()
-			.Name("Side")
-			.Caption("Sidepanel")
+            .Centre()
+    );
+    auiManager.AddPane(
+        panelSide,
+        wxAuiPaneInfo()
+            .Name("Side")
+            //.Caption("Sidepanel")
+            .CaptionVisible(false)
 			.BestSize(400, 400)
-			.Right()
-	);
+            .Right()
+    );
 
-	// tell the manager to "commit" all the changes just made
-	auiManager.Update();
+    // Commit changes
+    auiManager.Update();
+    
 }
 
 void kiwi::FrmMain::CreateStatusBar()

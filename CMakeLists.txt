@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)   
+cmake_minimum_required(VERSION 3.5)
 
 project("kiwi")
 set(CMAKE_CXX_STANDARD 17)
@@ -31,7 +31,7 @@ endif()
 
 # wxWidgets
 set(wxBUILD_SHARED OFF CACHE INTERNAL "")
-add_subdirectory("thirdparty/wxWidgets-3.2.6" EXCLUDE_FROM_ALL)
+add_subdirectory("thirdparty/wxWidgets-3.3.1" EXCLUDE_FROM_ALL)
 
 target_link_libraries("${PROJECT_NAME}"
 	PUBLIC 
